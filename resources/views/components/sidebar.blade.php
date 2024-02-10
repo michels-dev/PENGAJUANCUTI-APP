@@ -5,7 +5,7 @@
 		<div class="line"></div>
         <p>Please wait...</p>
         <div class="m-t-30">
-            <img src="{{ asset('image/gambar/logopicf.png') }}" alt="" style="width: 8%"><br>
+            <img src="{{ asset('image/logopenabur.png') }}" alt="" style="width: 8%"><br>
             <span class="text-dark">SDM -PENGAJUAN CUTI</span>
         </div>
     </div>
@@ -18,7 +18,7 @@
         <div class="navbar-header" style="background-color: #ffffff;">
             <a href="javascript:void(0);" class="bars"></a>
             <a class="navbar-brand" href="" >
-                <span class="text-dark">Penabur Internasional Choir Festival</span>
+                <span class="text-dark">BPK PENABUR Jakarta</span>
             </a>
             </a>
         </div>
@@ -57,12 +57,12 @@
         </div>
         <div class="info-container">
             <div class="name text-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">Admin</div>
-            <div class="email text-dark">BACKEND PICF</div>
+            <div class="email text-dark">PENGAJUAN CUTI</div>
             <div class="btn-group user-helper-dropdown text-dark"><i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="button"> keyboard_arrow_down </i>
                 <ul class="dropdown-menu pull-right">
-                    <li><a href="{{ route('admin.index') }}"><i class="material-icons">person</i>{{ Auth::user()->name }}</a></li>
+                    {{-- <li><a href="{{ route('admin.index') }}"><i class="material-icons">person</i>{{ Auth::user()->name }}</a></li> --}}
                     <li class="divider"></li>
-                    <li><a href="{{ route('auth.logout') }}"><i class="material-icons">input</i>Sign Out</a></li>
+                    {{-- <li><a href="{{ route('auth.logout') }}"><i class="material-icons">input</i>Sign Out</a></li> --}}
                 </ul>
             </div>
         </div>
@@ -72,16 +72,15 @@
     <div class="menu">
         <ul class="list">
             <li class="header">MAIN NAVIGATION</li>
-            <li><a href="{{ route('admin.index') }}"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
-            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-grid"></i><span>PICF Tables</span></a>
+            <li><a href="{{ route('admin.index-admin') }}"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
+            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-grid"></i><span>Admin Dashboard</span></a>
                 <ul class="ml-menu">
-                    <li><a href="{{ route('admin.table-faq') }}"><span>Faq Table</span></a></li>
-                    <li><a href="{{ route('admin.table-img') }}"><span>Image Table</span></a></li>
-                    <li><a href="{{ route('admin.table-news') }}"><span>News Table</span></a></li>
-                    <li><a href="{{ route('admin.table-tourism') }}"><span>Tourism Table</span></a></li>
-                    <li><a href="{{ route('admin.table-content') }}"><span>Text Content Table</span></a></li>
-                    <li><a href="{{ route('admin.table-gallery') }}"><span>Gallery Table</span></a></li>
-                    <li><a href="{{ route('admin.table-sponsor') }}"><span>Sponsor Table</span></a></li>
+                    <li><a href=""><span>Faq Table</span></a></li>
+                </ul>
+            </li>
+            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-grid"></i><span>Users Dashboard</span></a>
+                <ul class="ml-menu">
+                    <li><a href=""><span>Faq Table</span></a></li>
                 </ul>
             </li>
         </ul>
