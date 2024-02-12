@@ -15,7 +15,7 @@
                         <div class="body">
                             <h5>Selamat Datang Di Pengajuan Cuti | SDM</h5>
                             <p class="text-dark">Aplikasi Layanan SAS BPK PENABUR Jakarta</p>
-                            <a href="" class="btn  btn-raised bg-blue btn-lg waves-effect mt-3 font-20">PENGAJUAN CUTI</a>
+                            <a href="{{ route('admin.form-cuti') }}" class="btn  btn-raised bg-blue btn-lg waves-effect mt-3 font-20">PENGAJUAN CUTI</a>
                         </div>
                     </div>
                 </div>

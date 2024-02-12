@@ -21,4 +21,5 @@ use Illuminate\Support\Facades\Route;
 // Route Akses Admin
 Route::name('admin.')->prefix('admin')->group(function(){
     Route::get('/indexadmin', [AdminController::class, 'indexadmin'])->name('index-admin');
+    Route::get('/formcuti', [AdminController::class, 'formcuti'])->name('form-cuti');
 });

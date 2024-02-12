@@ -10,4 +10,9 @@ class AdminController extends Controller
     {
         return view('admin.index-admin');
     }
+
+    public function formcuti()
+    {
+        return view('admin.form-cuti');
+    }
 }
