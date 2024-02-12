@@ -53,7 +53,7 @@
 <aside id="leftsidebar" class="sidebar">
     <!-- User Info -->
     <div class="user-info">
-        <div class="image"> <img src="{{ asset('image/gambar/logopenabur.png') }}" width="48" height="48" alt="User">
+        <div class="image"> <img src="{{ asset('image/logopenabur.png') }}" width="48" height="48" alt="User">
         </div>
         <div class="info-container">
             <div class="name text-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">Admin</div>
