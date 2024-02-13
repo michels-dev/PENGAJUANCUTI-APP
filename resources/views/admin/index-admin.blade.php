@@ -25,7 +25,7 @@
         {{-- Visualisasi Data Cuti --}}
         <div class="container">
             <div class="row clearfix mt-4">
-                <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12 mt-3">
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 mt-3">
                     <h5>Cek Data Pengajuan Cuti</h5>
                     <div class="card" style="background-color: #f6f6f6">
                         <div class="body">
@@ -34,19 +34,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12 mt-5">
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 mt-5">
                     <div class="card" style="background-color: #f6f6f6">
                         <div class="body">
                             <p class="text-dark">Cuti Not Approved</p>
                             <span class="label label-warning mt-3"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12 mt-5">
-                    <div class="card" style="background-color: #f6f6f6">
-                        <div class="body">
-                            <p class="text-dark">Cuti Rejected</p>
-                            <span class="label label-danger mt-3"></span>
                         </div>
                     </div>
                 </div>
