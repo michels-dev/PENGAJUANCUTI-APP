@@ -40,6 +40,9 @@
 <script src="{{ asset('template/assets/bundles/mainscripts.bundle.js') }}"></script>
 <script src="{{ asset('template/assets/bundles/datatablescripts.bundle.js') }}"></script>
 <script src="{{ asset('template/assets/js/pages/tables/jquery-datatable.js') }}"></script>
+<script src="{{ asset('template/assets/plugins/jquery-validation/jquery.validate.js') }}"></script>
+<script src="{{ asset('template/assets/plugins/jquery-steps/jquery.steps.js') }}"></script>
+<script src="{{ asset('template/assets/js/pages/forms/form-validation.js') }}"></script>
 {{-- Script Sweet Alert --}}
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 {{-- datatables --}}

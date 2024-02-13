@@ -65,7 +65,7 @@
                                             <div class="form-group form-float">
                                                 <div class="form-line">
                                                     <label class="text-dark" style="font-weight: bold;">Jumlah Hari</label>
-                                                    <input type="text" class="form-control" name="pemohon" style="background-color: #fcfcfc" placeholder="Isi form ini sesuai dengan nama anda" required>
+                                                    <input type="text" class="form-control" name="pemohon" style="background-color: #fcfcfc" placeholder="Isi form ini sesuai dengan jumlah hari anda" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -96,7 +96,7 @@
                                             <div class="form-group form-float">
                                                 <div class="form-line">
                                                     <label class="text-dark" style="font-weight: bold;">Keterangan</label>
-                                                    <textarea name="keperluan" cols="30" rows="5" class="form-control no-resize" style="background-color: #fcfcfc" placeholder="Berikan alasan keperluan apa dalam peminjaman ruangan" required></textarea>
+                                                    <textarea name="keperluan" cols="30" rows="5" class="form-control no-resize" style="background-color: #fcfcfc" placeholder="Berikan keterangan dalam pengajuan cuti" required></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -110,7 +110,7 @@
                                             <div class="form-group form-float">
                                                 <div class="form-line">
                                                     <label class="text-dark" style="font-weight: bold;">Pengganti</label>
-                                                    <input type="text" class="form-control" name="pemohon" style="background-color: #fcfcfc" placeholder="Isi form ini sesuai dengan nama anda" required>
+                                                    <input type="text" class="form-control" name="pemohon" style="background-color: #fcfcfc" placeholder="Isi form ini sesuai dengan pengganti pengajuan cuti anda" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -122,14 +122,14 @@
                                             <div class="form-group form-float">
                                                 <div class="form-line">
                                                     <label class="text-dark" style="font-weight: bold;">Upload Bukti (max 5 MB)</label>
-                                                    <input type="text" class="form-control" name="pemohon" style="background-color: #fcfcfc" placeholder="Isi form ini sesuai dengan nama anda" required>
+                                                    <input type="file" class="form-control" name="pemohon" style="background-color: #fcfcfc" required>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <button id="sendButton" class="btn btn-raised btn-primary btn-lg waves-effect" style="float: right;" type="button">SAVE</button>
+                            <button class="btn btn-raised btn-primary waves-effectt" style="float: right;" type="submit">SAVE</button>
                         </form>
                     </div>
                 </div>
