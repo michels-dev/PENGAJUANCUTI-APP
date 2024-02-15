@@ -6,11 +6,11 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
 
-    <title>@yield('title') -Pengajuan Cuti</title>
+    <title>@yield('title') -BPK PENABUR</title>
 
     @stack('before-styles')
     <!-- Favicon-->
-    <link rel="icon" href="{{ asset('image/gambar/logopenabur.png') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('image/logopenabur.png') }}" type="image/x-icon">
     <!-- Custom Css -->
     <link rel="stylesheet" href="{{ asset('template/assets/plugins/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/assets/css/main.css') }}">

@@ -36,5 +36,14 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
         });
+
+        // Penanganan untuk root URL ('/')
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(function () {
+                Route::get('/', function () {
+                    return redirect()->route('auth.login');
+                });
+            });
     }
 }

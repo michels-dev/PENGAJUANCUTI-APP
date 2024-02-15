@@ -46,46 +46,50 @@
         </div>
 
         {{-- Table Pengajuan Cuti Terkini --}}
+        @if(Auth::user()->isAdmin())
         <div class="container">
             <div class="row clearfix mt-4">
                 <div class="col-lg-12 col-sm-6 col-md-6 col-xs-12 mt-3">
-                    <h5>Pengajuan Cuti Terkini <small class="text-danger">*</small></h5>
+                    <h5>Riwayat Pengaajuan Cuti <small class="text-danger">*</small></h5>
                     <div class="card">
                         <div class="table-responsive social_media_table mt-4">
-                            <table class="table table-hover js-basic-terkini dataTable" style="width:100%;">
+                            <table class="table table-hover js-basic-user dataTable" style="width:100%;">
                                 <thead>
                                     <tr>
-                                        <th class="font-italic">Cuti terkini - <small class="font-bold"></small> &nbsp;</th>
+                                        <th class="font-italic">Data Pengajuan Cuti Users</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @php
+                                    @php
                                         $no = 1;
                                     @endphp
-                                    @foreach ($dataToday as $row) --}}
-                                        <tr>
+                                    @foreach($data as $row)
+                                        <tr style="background-color: #ffffff">
                                             <th>
-                                                <div class="body">
-                                                    <div class="comment-action">
-                                                        <h5 class="c_name"><a href=""></a></h5>
-                                                        <p class="c_msg m-b-0"></p>
-                                                        <div>
-                                                            {{-- @if ($row->rejected)
-                                                                <span class="badge btn-danger" data-toggle="modal" data-target="#rejectModal{{ $row->id }}">Rejected</span>
-                                                            @elseif (!$row->approved && !$row->unapproved)
-                                                                <span class="badge bg-amber">Pending approval</span>
-                                                            @elseif ($row->approved)
-                                                                <span href="{{ route('email.show-tapproved',['id'=>$row->id]) }}" class="badge bg-light-green">approved</span>
-                                                            @else
-                                                                <span href="{{ route('email.show-tnapproved',['id'=>$row->id]) }}" class="badge badge-warning text-white">not approved</span>
-                                                            @endif --}}
+                                                <ul class="mail_list list-group list-unstyled">
+                                                    <li class="list-group-item">
+                                                        <div class="media">
+                                                            <div class="media-body">
+                                                                <div class="media-heading">
+                                                                    <a class="m-r-10">{{ $row->pemohon }}</a>
+                                                                    <span>
+                                                                        @if (!$row->approved && !$row->unapproved)
+                                                                            <span class="label bg-amber">Pending approval</span>
+                                                                        @elseif ($row->approved)
+                                                                            <a href="" class="label bg-light-green">approved</a>
+                                                                        @else
+                                                                            <a href="" class="label badge-warning text-white">not approved</a>
+                                                                        @endif
+                                                                    </span>
+                                                                    <small class="float-right text-muted"><time class="hidden-sm-down" datetime="2017">{{ $row->tanggal_mulai }}</time></small>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <small class="comment-date float-sm-right"></small>
-                                                    </div>
-                                                </div>
+                                                    </li>
+                                                </ul>
                                             </th>
                                         </tr>
-                                    {{-- @endforeach --}}
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -93,6 +97,58 @@
                 </div>
             </div>
         </div>
+        @else
+        <div class="container">
+            <div class="row clearfix mt-4">
+                <div class="col-lg-12 col-sm-6 col-md-6 col-xs-12 mt-3">
+                    <h5>Riwayat Pengajuan Cuti <small class="text-danger">*</small></h5>
+                    <div class="card">
+                        <div class="table-responsive social_media_table mt-4">
+                            <table class="table table-hover js-basic-user dataTable" style="width:100%;">
+                                <thead>
+                                    <tr>
+                                        <th class="font-italic">Data Pengajuan Cuti Anda - <small class="font-bold">{{ $totalToday }}</small> &nbsp;</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
+                                    @foreach($data as $row)
+                                        <tr style="background-color: #ffffff">
+                                            <th>
+                                                <ul class="mail_list list-group list-unstyled">
+                                                    <li class="list-group-item">
+                                                        <div class="media">
+                                                            <div class="media-body">
+                                                                <div class="media-heading">
+                                                                    <a class="m-r-10">{{ $row->pemohon }}</a>
+                                                                    <span>
+                                                                        @if (!$row->approved && !$row->unapproved)
+                                                                            <span class="label bg-amber">Pending approval</span>
+                                                                        @elseif ($row->approved)
+                                                                            <a href="" class="label bg-light-green">approved</a>
+                                                                        @else
+                                                                            <a href="" class="label badge-warning text-white">not approved</a>
+                                                                        @endif
+                                                                    </span>
+                                                                    <small class="float-right text-muted"><time class="hidden-sm-down" datetime="2017">{{ $row->tanngal_mulai }}</time></small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </th>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
     </section>
     @endsection
 

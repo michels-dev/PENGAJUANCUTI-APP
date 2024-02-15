@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,4 +30,10 @@ Route::name('dashboard.')->prefix('dashboard')->group(function(){
     Route::get('/index', [DashboardController::class, 'index'])->name('index');
     Route::get('/formcuti', [DashboardController::class, 'formcuti'])->name('form-cuti');
     Route::post('/store', [DashboardController::class, 'store'])->name('store');
+});
+
+// Route Akses Login
+Route::name('auth.')->prefix('auth')->group(function(){
+    Route::get('/login', [LoginController::class, 'login'])->name('login');
+    Route::post('/loginproses', [LoginController::class, 'loginproses'])->name('loginproses');
 });
