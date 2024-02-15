@@ -42,4 +42,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function hasAnyRole(...$roles)
+    {
+        return in_array($this->role, $roles);
+    }
+
+    public function isAdmin()
+    {
+        return $this->role === 'admin'; // Gantilah 'admin' dengan peran admin yang sesuai di aplikasi Anda
+    }
+
+    public function isUser()
+    {
+        return $this->role === 'user'; // Gantilah 'user' dengan peran user yang sesuai di aplikasi Anda
+    }
 }
