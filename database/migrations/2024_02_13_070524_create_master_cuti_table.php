@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('kode');
             $table->string('keterangan');
-            $table->string('potong_cuti');
+            $table->string('potong_cuti')->nullable();
             $table->timestamps();
         });
     }

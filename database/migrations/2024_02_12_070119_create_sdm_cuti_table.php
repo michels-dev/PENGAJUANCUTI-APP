@@ -15,18 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('nik', 20);
             $table->dateTime('tanggal_mulai');
-            $table->dateTime('tanggal_akhir');
             $table->boolean('approval')->default(false);
-            $table->dateTime('approval_date');
+            $table->dateTime('approval_date')->nullable();
             $table->text('keperluan');
             $table->string('hari', 255);
             $table->string('tipe', 255);
             $table->string('pengganti', 255);
-            $table->text('query_update');
-            $table->text('query_delete');
-            $table->string('approver', 255);
+            $table->text('query_update')->nullable();
+            $table->text('query_delete')->nullable();
             $table->text('bukti_dokumen');
-            $table->integer('flag_pump');
+            $table->integer('flag_pump')->nullable();
             $table->timestamps();
         });
     }

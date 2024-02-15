@@ -38,17 +38,29 @@
                         </ul>
                     </div>
                     <div class="body demo-masked-input">
-                        <form action="" id="form_validation" method="POST">
+                        <form action="{{ route('dashboard.store') }}" id="form_validation" method="POST">
                             @csrf
                             <div class="row clearfix">
-                                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 mt-3">
+                                <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12 mt-3">
                                     <p class="text-dark font-bold">Kategori Identitas <small class="text-danger">*</small> </p>
+                                    <div class="card" style="background-color: #fcfcfc">
+                                        <div class="body">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <label class="text-dark" style="font-weight: bold;">NIK</label>
+                                                    <input type="text" class="form-control" name="nik" style="background-color: #fcfcfc" placeholder="Isi form ini sesuai dengan nik anda" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12 mt-5">
                                     <div class="card" style="background-color: #fcfcfc">
                                         <div class="body mb-3">
                                             <div class="form-group">
                                                 <label for="taskName" style="font-weight: bold;">Jenis Izin</label>
                                                     <div class="form-line">
-                                                        <select class="form-control show-tick" name="user_created" style="background-color: #fcfcfc" required>
+                                                        <select class="form-control show-tick" name="tipe" style="background-color: #fcfcfc" required>
                                                             <option selected>SILAHKAN PILIH PENGAJUAN CUTI</option>
                                                             @foreach($masterCuti as $cuti)
                                                             <option value="{{ $cuti->kode }}">{{ $cuti->keterangan}}</option>
@@ -59,13 +71,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 mt-5">
+                                <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12 mt-5">
                                     <div class="card" style="background-color: #fcfcfc">
                                         <div class="body">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
                                                     <label class="text-dark" style="font-weight: bold;">Jumlah Hari</label>
-                                                    <input type="text" class="form-control" name="pemohon" style="background-color: #fcfcfc" placeholder="Isi form ini sesuai dengan jumlah hari anda" required>
+                                                    <input type="text" class="form-control" name="hari" style="background-color: #fcfcfc" placeholder="Isi form ini sesuai dengan jumlah hari anda" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -83,7 +95,7 @@
                                                             <i class="material-icons">date_range</i>
                                                         </span>
                                                         <div class="form-line">
-                                                            <input type="date" name="mulai" class="form-control" style="background-color: #fcfcfc" placeholder="Ex: dd/mm/yyyy" required>
+                                                            <input type="date" name="tanggal_mulai" class="form-control" style="background-color: #fcfcfc" placeholder="Ex: dd/mm/yyyy" required>
                                                         </div>
                                                     </div>
                                             </div>
@@ -110,7 +122,7 @@
                                             <div class="form-group form-float">
                                                 <div class="form-line">
                                                     <label class="text-dark" style="font-weight: bold;">Pengganti</label>
-                                                    <input type="text" class="form-control" name="pemohon" style="background-color: #fcfcfc" placeholder="Isi form ini sesuai dengan pengganti pengajuan cuti anda" required>
+                                                    <input type="text" class="form-control" name="pengganti" style="background-color: #fcfcfc" placeholder="Isi form ini sesuai dengan pengganti pengajuan cuti anda" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -122,7 +134,7 @@
                                             <div class="form-group form-float">
                                                 <div class="form-line">
                                                     <label class="text-dark" style="font-weight: bold;">Upload Bukti (max 5 MB)</label>
-                                                    <input type="file" class="form-control" name="pemohon" style="background-color: #fcfcfc" required>
+                                                    <input type="file" class="form-control" name="bukti_dokumen" style="background-color: #fcfcfc" required>
                                                 </div>
                                             </div>
                                         </div>
