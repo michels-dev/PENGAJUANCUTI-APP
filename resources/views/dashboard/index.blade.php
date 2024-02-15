@@ -46,11 +46,11 @@
         </div>
 
         {{-- Table Pengajuan Cuti Terkini --}}
-        {{-- @if(Auth::user()->isAdmin())
+        @if(Auth::user()->isAdmin())
         <div class="container">
             <div class="row clearfix mt-4">
                 <div class="col-lg-12 col-sm-6 col-md-6 col-xs-12 mt-3">
-                    <h5>Riwayat Pengaajuan Cuti <small class="text-danger">*</small></h5>
+                    <h5>Riwayat Pengajuan Cuti <small class="text-danger">*</small></h5>
                     <div class="card">
                         <div class="table-responsive social_media_table mt-4">
                             <table class="table table-hover js-basic-user dataTable" style="width:100%;">
@@ -71,11 +71,11 @@
                                                         <div class="media">
                                                             <div class="media-body">
                                                                 <div class="media-heading">
-                                                                    <a class="m-r-10">{{ $row->pemohon }}</a>
+                                                                    <a class="m-r-10">{{ $row->nik }}</a>
                                                                     <span>
-                                                                        @if (!$row->approved && !$row->unapproved)
+                                                                        @if (!$row->approval == 0)
                                                                             <span class="label bg-amber">Pending approval</span>
-                                                                        @elseif ($row->approved)
+                                                                        @elseif ($row->approval == 1)
                                                                             <a href="" class="label bg-light-green">approved</a>
                                                                         @else
                                                                             <a href="" class="label badge-warning text-white">not approved</a>
@@ -122,11 +122,11 @@
                                                         <div class="media">
                                                             <div class="media-body">
                                                                 <div class="media-heading">
-                                                                    <a class="m-r-10">{{ $row->pemohon }}</a>
+                                                                    <a class="m-r-10">{{ $row->nik }}</a>
                                                                     <span>
-                                                                        @if (!$row->approved && !$row->unapproved)
+                                                                        @if ($row->approval == 0)
                                                                             <span class="label bg-amber">Pending approval</span>
-                                                                        @elseif ($row->approved)
+                                                                        @elseif ($row->approval == 1)
                                                                             <a href="" class="label bg-light-green">approved</a>
                                                                         @else
                                                                             <a href="" class="label badge-warning text-white">not approved</a>
@@ -148,7 +148,7 @@
                 </div>
             </div>
         </div>
-        @endif --}}
+        @endif
     </section>
     @endsection
 

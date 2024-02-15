@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class sdm_cuti extends Model
+class users extends Model
 {
     use HasFactory;
-    protected $table = 'sdm_cuti';
+    protected $table = 'users';
     protected $guarded =[];
-    public function user()
+    public function sdmCuti()
     {
-        return $this->belongsTo(User::class, 'nik', 'nik');
+        return $this->hasMany(sdm_cuti::class, 'nik', 'nik');
     }
 }

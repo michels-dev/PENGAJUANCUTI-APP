@@ -5,12 +5,30 @@ namespace App\Http\Controllers;
 use App\Models\master_cuti;
 use App\Models\sdm_cuti;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        return view('dashboard.index');
+        $user= Auth::user();
+
+        $totalToday = sdm_cuti::where('nik', $user->nik)->where('tanggal_mulai', '>=', now())->count();
+
+        if ($user->isAdmin()) {
+            // Jika pengguna adalah admin, tampilkan semua data
+            $data = sdm_cuti::where('tanggal_mulai', '>=', now())->get();
+        } else {
+            $data = sdm_cuti::where('nik', $user->nik)->where('tanggal_mulai', '>=', now())
+            ->where(function ($query){
+                $query->where('approval', 0)->orWhere('approval', 1);
+            })->get();
+        }
+
+        $approved = sdm_cuti::where('approval', true)->count();
+        $notApproved = sdm_cuti::where('approval', false)->count();
+
+        return view('dashboard.index', compact('data', 'totalToday', 'approved', 'notApproved'));
     }
 
     public function formcuti()
