@@ -27,7 +27,7 @@
                     <div class="form-group form-float">
                         <div class="input-group"> <span class="input-group-addon"> <i class="material-icons">vpn_key</i> </span>
                             <div class="form-line">
-                                <input type="text" name="password" class="form-control date" placeholder="Password">
+                                <input type="password" name="password" class="form-control date" placeholder="Password">
                             </div>
                         </div>
                     </div>

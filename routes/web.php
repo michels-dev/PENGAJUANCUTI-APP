@@ -21,12 +21,12 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // Route Akses Admin
-Route::name('admin.')->prefix('admin')->group(function(){
+Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function(){
     Route::get('/formcuti', [AdminController::class, 'formcuti'])->name('form-cuti');
 });
 
 // Route Akses Dashboardd
-Route::name('dashboard.')->prefix('dashboard')->group(function(){
+Route::middleware(['auth'])->name('dashboard.')->prefix('dashboard')->group(function(){
     Route::get('/index', [DashboardController::class, 'index'])->name('index');
     Route::get('/formcuti', [DashboardController::class, 'formcuti'])->name('form-cuti');
     Route::post('/store', [DashboardController::class, 'store'])->name('store');
@@ -36,4 +36,5 @@ Route::name('dashboard.')->prefix('dashboard')->group(function(){
 Route::name('auth.')->prefix('auth')->group(function(){
     Route::get('/login', [LoginController::class, 'login'])->name('login');
     Route::post('/loginproses', [LoginController::class, 'loginproses'])->name('loginproses');
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });

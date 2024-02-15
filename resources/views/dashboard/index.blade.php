@@ -46,7 +46,7 @@
         </div>
 
         {{-- Table Pengajuan Cuti Terkini --}}
-        @if(Auth::user()->isAdmin())
+        {{-- @if(Auth::user()->isAdmin())
         <div class="container">
             <div class="row clearfix mt-4">
                 <div class="col-lg-12 col-sm-6 col-md-6 col-xs-12 mt-3">
@@ -148,7 +148,7 @@
                 </div>
             </div>
         </div>
-        @endif
+        @endif --}}
     </section>
     @endsection
 

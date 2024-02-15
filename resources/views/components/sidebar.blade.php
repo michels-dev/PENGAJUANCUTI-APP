@@ -62,7 +62,7 @@
                 <ul class="dropdown-menu pull-right">
                     {{-- <li><a href="{{ route('admin.index') }}"><i class="material-icons">person</i>{{ Auth::user()->name }}</a></li> --}}
                     <li class="divider"></li>
-                    {{-- <li><a href="{{ route('auth.logout') }}"><i class="material-icons">input</i>Sign Out</a></li> --}}
+                    <li><a href="{{ route('auth.logout') }}"><i class="material-icons">input</i>Sign Out</a></li>
                 </ul>
             </div>
         </div>
