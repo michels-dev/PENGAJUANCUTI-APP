@@ -72,17 +72,15 @@
     <div class="menu">
         <ul class="list">
             <li class="header">MAIN NAVIGATION</li>
-            <li><a href="{{ route('admin.index-admin') }}"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
-            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-grid"></i><span>Admin Dashboard</span></a>
-                <ul class="ml-menu">
-                    <li><a href=""><span>Faq Table</span></a></li>
-                </ul>
-            </li>
-            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-grid"></i><span>Users Dashboard</span></a>
-                <ul class="ml-menu">
-                    <li><a href=""><span>Faq Table</span></a></li>
-                </ul>
-            </li>
+            <li><a href="{{ route('admin.index-admin') }}"><i class="zmdi zmdi-view-dashboard"></i><span>Dashboard</span></a></li>
+            <li><a href="{{ route('admin.index-admin') }}"><i class="zmdi zmdi-assignment-check"></i><span>Table Approved</span></a></li>
+            <li><a href="{{ route('admin.index-admin') }}"><i class="zmdi zmdi-assignment-alert"></i><span>Table Not Approved</span></a></li>
+            <li><a href="{{ route('admin.index-admin') }}"><i class="zmdi zmdi-wrap-text"></i><span>Form Pengajuan Cuti</span></a></li>
+            <li class="header">ADMIN DASHBOARD</li>
+            <li><a href="{{ route('admin.index-admin') }}"><i class="zmdi zmdi-view-web"></i></i><span>Admin Table</span></a></li>
+            <li><a href="{{ route('admin.index-admin') }}"><i class="zmdi zmdi-label-alt"></i><span>Update Data</span></a></li>
+            <li class="header">USERS DASHBOARD</li>
+            <li><a href="{{ route('admin.index-admin') }}"><i class="zmdi zmdi-view-web"></i></i><span>Users Table</span></a></li>
         </ul>
     </div>
     <!-- #Menu -->
