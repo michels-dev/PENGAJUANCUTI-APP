@@ -22,10 +22,9 @@
             </a>
             </a>
         </div>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="javascript:void(0);" class="ls-toggle-btn" data-close="true"><i class="zmdi zmdi-swap"></i></a></li>
-            <li><a href="" class="inbox-btn hidden-sm-down" data-close="true"><i class="zmdi zmdi-home"></i></a></li>
-            <li class="dropdown menu-app hidden-sm-down"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"> <i class="zmdi zmdi-apps"></i></a>
+        <ul class="nav navbar-nav navbar-left">
+            <li><a href="javascript:void(0);" class="ls-toggle-btn" data-close="true"><i class="zmdi zmdi-swap text-dark"></i></a></li>
+            <li><a href="{{ route('auth.logout') }}" class="mega-menu xs-hide" data-close="true"><i class="zmdi zmdi-power text-dark"></i></a></li>
                 <ul class="dropdown-menu slideDown">
                     <li class="body">
                         <ul class="menu">
@@ -39,11 +38,8 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
                 <div class="notify"><span class="heartbit"></span><span class="point"></span></div>
-                </a>
-                <ul class="dropdown-menu slideDown">
-                    <li class="header">NOTIFICATIONS</li>
-                    <li class="footer"><a href="javascript:void(0);">View All Notifications</a></li>
-                </ul>
+                <li class="mega-menu xs-hide">Halo! {{ Auth::user()->name }} ({{ Auth::user()->role }})</li>
+                <li><a class="mega-menu xs-hide" data-close="true"></a></li>
             </li>
         </ul>
     </div>
@@ -53,18 +49,11 @@
 <aside id="leftsidebar" class="sidebar">
     <!-- User Info -->
     <div class="user-info">
-        <div class="image"> <img src="{{ asset('image/logopenabur.png') }}" width="48" height="48" alt="User">
+        <div class="image"> <img src="{{ asset('image/logopenabur.png') }}" width="50" height="50" alt="User">
         </div>
         <div class="info-container">
-            <div class="name text-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">Admin</div>
-            <div class="email text-dark">PENGAJUAN CUTI</div>
-            <div class="btn-group user-helper-dropdown text-dark"><i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="button"> keyboard_arrow_down </i>
-                <ul class="dropdown-menu pull-right">
-                    {{-- <li><a href="{{ route('admin.index') }}"><i class="material-icons">person</i>{{ Auth::user()->name }}</a></li> --}}
-                    <li class="divider"></li>
-                    <li><a href="{{ route('auth.logout') }}"><i class="material-icons">input</i>Sign Out</a></li>
-                </ul>
-            </div>
+            <div class="name text-dark">SDM</div>
+            <div class="text-dark">Pengajuan Cuti</div>
         </div>
     </div>
     <!-- #User Info -->

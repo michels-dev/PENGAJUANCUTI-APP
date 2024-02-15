@@ -7,5 +7,13 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    public function admintable()
+    {
+        return view('admin.admin-table');
+    }
 
+    public function updatecuti()
+    {
+        return view('admin.update-cuti');
+    }
 }

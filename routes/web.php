@@ -22,7 +22,8 @@ use Illuminate\Support\Facades\Route;
 
 // Route Akses Admin
 Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function(){
-    Route::get('/formcuti', [AdminController::class, 'formcuti'])->name('form-cuti');
+    Route::get('/admintable', [AdminController::class, 'admintable'])->name('admin-table');
+    Route::get('/updatecuti', [AdminController::class, 'updatecuti'])->name('update-cuti');
 });
 
 // Route Akses Dashboardd
@@ -37,4 +38,10 @@ Route::name('auth.')->prefix('auth')->group(function(){
     Route::get('/login', [LoginController::class, 'login'])->name('login');
     Route::post('/loginproses', [LoginController::class, 'loginproses'])->name('loginproses');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+});
+
+// Hak Akses for Admin
+Route::middleware(['auth', 'hakakses:admin'])->name('admin.')->prefix('admin')->group(function(){
+    Route::get('/admintable', [AdminController::class, 'admintable'])->name('admin-table');
+    Route::get('/updatecuti', [AdminController::class, 'updatecuti'])->name('update-cuti');
 });
