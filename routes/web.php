@@ -27,4 +27,5 @@ Route::name('admin.')->prefix('admin')->group(function(){
 // Route Akses Dashboardd
 Route::name('dashboard.')->prefix('dashboard')->group(function(){
     Route::get('/index', [DashboardController::class, 'index'])->name('index');
+    Route::get('/formcuti', [DashboardController::class, 'formcuti'])->name('form-cuti');
 });
