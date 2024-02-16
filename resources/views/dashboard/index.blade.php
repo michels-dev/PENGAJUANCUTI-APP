@@ -73,9 +73,9 @@
                                                                 <div class="media-heading">
                                                                     <a class="m-r-10">{{ $row->nik }}</a>
                                                                     <span>
-                                                                        @if (!$row->approval == 0)
+                                                                        @if (!$row->approval)
                                                                             <span class="label bg-amber">Pending approval</span>
-                                                                        @elseif ($row->approval == 1)
+                                                                        @elseif ($row->approval)
                                                                             <a href="" class="label bg-light-green">approved</a>
                                                                         @else
                                                                             <a href="" class="label badge-warning text-white">not approved</a>
@@ -124,9 +124,9 @@
                                                                 <div class="media-heading">
                                                                     <a class="m-r-10">{{ $row->nik }}</a>
                                                                     <span>
-                                                                        @if ($row->approval == 0)
+                                                                        @if ($row->approval)
                                                                             <span class="label bg-amber">Pending approval</span>
-                                                                        @elseif ($row->approval == 1)
+                                                                        @elseif ($row->approval)
                                                                             <a href="" class="label bg-light-green">approved</a>
                                                                         @else
                                                                             <a href="" class="label badge-warning text-white">not approved</a>

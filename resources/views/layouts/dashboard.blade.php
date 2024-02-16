@@ -24,7 +24,7 @@
 @stack('after-styles')
 
 </head>
-<body class="theme-blush" style="background-color: #fbfbfb">
+<body class="theme-blush" style="background-color: #f1f1f1">
 
 {{-- Fitur --}}
     @yield('content')

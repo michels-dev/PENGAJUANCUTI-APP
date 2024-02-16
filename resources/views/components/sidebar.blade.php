@@ -63,7 +63,7 @@
             <li class="header">MAIN NAVIGATION</li>
             <li><a href="{{ route('dashboard.index') }}"><i class="zmdi zmdi-view-dashboard"></i><span>Dashboard</span></a></li>
             <li><a href=""><i class="zmdi zmdi-assignment-check"></i><span>Table Approved</span></a></li>
-            <li><a href=""><i class="zmdi zmdi-assignment-alert"></i><span>Table Not Approved</span></a></li>
+            <li><a href=""><i class="zmdi zmdi-assignment-alert"></i><span>Table Rejected</span></a></li>
             <li><a href="{{ route('dashboard.form-cuti') }}"><i class="zmdi zmdi-wrap-text"></i><span>Form Pengajuan Cuti</span></a></li>
             @if (Auth::user()->role == "admin")
             <li class="header">ADMIN DASHBOARD</li>
