@@ -19,7 +19,7 @@ class UsersSeeder extends Seeder
                 'name' => 'Michel Sinambela',
                 'email' => 'michel.sinambela@bpkpenaburjakarta.or.id',
                 'password' => Hash::make('admin123'),
-                'role' => 'user',
+                'role' => 'admin',
             ],
             [
                 'name' => 'User A',
