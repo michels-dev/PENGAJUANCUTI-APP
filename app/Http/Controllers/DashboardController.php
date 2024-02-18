@@ -18,22 +18,24 @@ class DashboardController extends Controller
         ->count();
 
         if ($user->isAdmin()) {
-            // Jika pengguna adalah admin, tampilkan semua data
-            $data = sdm_cuti::where('tanggal_mulai', '>=', today())->get();
+            // Jika pengguna adalah admin, tampilkan data pending approval
+            $data = sdm_cuti::where('tanggal_mulai', '>=', today())
+            ->whereNull('approval')
+            ->get();
         } else {
-            $data = sdm_cuti::where('nik', $user->nik)
-            ->where('tanggal_mulai', '>=', today())
+            $data = sdm_cuti::where('tanggal_mulai', '>=', today())
             ->where(function ($query){
                 $query->where('approval', null)
                 ->orWhere('approval', 0)
                 ->orWhere('approval', 1);
             })->get();
         }
-
+        // visualisasi data
+        $pending = sdm_cuti::where('approval', null)->count();
         $approved = sdm_cuti::where('approval', 1)->count();
-        $reject = sdm_cuti::where('approval', 0)->count();
+        $rejected = sdm_cuti::where('approval', 0)->count();
 
-        return view('dashboard.index', compact('data', 'totalToday', 'approved', 'reject'));
+        return view('dashboard.index', compact('data', 'totalToday', 'approved', 'rejected', 'pending'));
     }
 
     public function formcuti()

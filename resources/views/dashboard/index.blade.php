@@ -25,20 +25,28 @@
         {{-- Visualisasi Data Cuti --}}
         <div class="container">
             <div class="row clearfix mt-4">
-                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 mt-3">
-                    <h5>Cek Data Pengajuan Cuti</h5>
-                    <div class="card" style="background-color: #f6f6f6">
+                <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12 mt-3">
+                    <h5>Cek Data Pengajuan Cuti <small class="text-danger">*</small></h5>
+                    <div class="card" style="background-color: #ffffff">
                         <div class="body">
-                            <p class="text-dark">Cuti Approved</p>
-                            <span class="label label-success mt-3"></span>
+                            <p class="text-dark">On-Hold</p>
+                            <span class="label label-warning mt-3">{{ $pending }}</span>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 mt-5">
-                    <div class="card" style="background-color: #f6f6f6">
+                <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12 mt-5">
+                    <div class="card" style="background-color: #ffffff">
                         <div class="body">
-                            <p class="text-dark">Cuti Not Approved</p>
-                            <span class="label label-warning mt-3"></span>
+                            <p class="text-dark">Approved</p>
+                            <span class="label label-success mt-3">{{ $approved }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12 mt-5">
+                    <div class="card" style="background-color: #ffffff">
+                        <div class="body">
+                            <p class="text-dark">Rejected</p>
+                            <span class="label label-danger mt-3">{{ $rejected }}</span>
                         </div>
                     </div>
                 </div>
@@ -49,48 +57,45 @@
         @if(Auth::user()->isAdmin())
         <div class="container">
             <div class="row clearfix mt-4">
-                <div class="col-lg-12 col-sm-6 col-md-6 col-xs-12 mt-3">
-                    <h5>Riwayat Pengajuan Cuti <small class="text-danger">*</small></h5>
+                <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="card">
-                        <div class="table-responsive social_media_table mt-4">
-                            <table class="table table-hover js-basic-user dataTable" style="width:100%;">
+                        <div class="header">
+                            <h2>Data Pengajuan Cuti Users</h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
+                                    <ul class="dropdown-menu slideUp ">
+                                        <li><a href="javascript:void(0);">Action</a></li>
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body table-responsive members_profiles">
+                            <table class="table table-hover js-basic-user dataTable">
                                 <thead>
                                     <tr>
-                                        <th class="font-italic">Data Pengajuan Cuti Users</th>
+                                        <th>NIK</th>
+                                        <th>Tanggal Pengajuan</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php
                                         $no = 1;
                                     @endphp
-                                    @foreach($data as $row)
-                                        <tr style="background-color: #ffffff">
-                                            <th>
-                                                <ul class="mail_list list-group list-unstyled">
-                                                    <li class="list-group-item">
-                                                        <div class="media">
-                                                            <div class="media-body">
-                                                                <div class="media-heading">
-                                                                    <a class="m-r-10">{{ $row->nik }}</a>
-                                                                    <span>
-                                                                        @if ($row->approval === null)
-                                                                            <span class="label bg-amber">Pending approval</span>
-                                                                        @elseif ($row->approval === 1)
-                                                                            <a href="" class="label bg-light-green">approved</a>
-                                                                        @elseif ($row->approval === 0)
-                                                                            <a href="" class="label badge-warning text-white">not approved</a>
-                                                                        @else
-                                                                            <p>Silahkan Lakukan Status Persetujuan</p>
-                                                                        @endif
-                                                                    </span>
-                                                                    <small class="float-right text-muted"><time class="hidden-sm-down" datetime="2017">{{ $row->tanggal_mulai }}</time></small>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </th>
-                                        </tr>
+                                    @foreach ($data as $row)
+                                    <tr>
+                                        <td>{{ $row->nik }}</td>
+                                        <td>{{ $row->tanggal_mulai }}</td>
+                                        <td>
+                                            <span>
+                                                @if ($row->approval === null)
+                                                    <a href="{{ route('admin.admin-table') }}" class="label bg-amber">On-Hold</a>
+                                                @endif
+                                            </span>
+                                        </td>
+                                    </tr>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -102,49 +107,52 @@
         @else
         <div class="container">
             <div class="row clearfix mt-4">
-                <div class="col-lg-12 col-sm-6 col-md-6 col-xs-12 mt-3">
-                    <h5>Riwayat Pengajuan Cuti <small class="text-danger">*</small></h5>
+                <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="card">
-                        <div class="table-responsive social_media_table mt-4">
-                            <table class="table table-hover js-basic-user dataTable" style="width:100%;">
+                        <div class="header">
+                            <h2>Data Pengajuan Anda <small></small> </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
+                                    <ul class="dropdown-menu slideUp ">
+                                        <li><a href="javascript:void(0);">Action</a></li>
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body table-responsive members_profiles">
+                            <table class="table table-hover js-basic-anda dataTable">
                                 <thead>
                                     <tr>
-                                        <th class="font-italic">Data Pengajuan Cuti Anda - <small class="font-bold">{{ $totalToday }}</small> &nbsp;</th>
+                                        <th>NIK</th>
+                                        <th>Tanggal Pengajuan</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php
                                         $no = 1;
                                     @endphp
-                                    @foreach($data as $row)
-                                        <tr style="background-color: #ffffff">
-                                            <th>
-                                                <ul class="mail_list list-group list-unstyled">
-                                                    <li class="list-group-item">
-                                                        <div class="media">
-                                                            <div class="media-body">
-                                                                <div class="media-heading">
-                                                                    <a class="m-r-10">{{ $row->nik }}</a>
-                                                                    <span>
-                                                                        @if ($row->approval === null)
-                                                                            <span class="label bg-amber">Pending approval</span>
-                                                                        @elseif ($row->approval === 1)
-                                                                            <a href="" class="label bg-light-green">approved</a>
-                                                                        @elseif ($row->approval === 0)
-                                                                            <a href="" class="label badge-warning text-white">not approved</a>
-                                                                        @else
-                                                                            <p>Silahkan Lakukan Status Persetujuan</p>
-                                                                        @endif
+                                    @foreach ($data as $row)
+                                    <tr>
+                                        <td>{{ $row->nik }}</td>
+                                        <td>{{ $row->tanggal_mulai }}</td>
+                                        <td>
+                                            <span>
+                                                @if ($row->approval === null)
+                                                    <span class="label bg-amber">On-Hold</span>
+                                                @elseif ($row->approval === 1)
+                                                    <span class="label bg-light-green">Approved</span>
+                                                @elseif ($row->approval === 0)
+                                                    <span class="label badge-danger text-white">Rejected</span>
+                                                @else
+                                                    <p>Status Persetujuan Tidak Valid</p>
+                                                @endif
 
-                                                                    </span>
-                                                                    <small class="float-right text-muted"><time class="hidden-sm-down" datetime="2017">{{ $row->tanngal_mulai }}</time></small>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </th>
-                                        </tr>
+                                            </span>
+                                        </td>
+                                    </tr>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -161,10 +169,18 @@
 @push('after-scripts')
     <script>
         $(function () {
-            $('.js-basic-terkini').DataTable({
+            $('.js-basic-anda').DataTable({
                 "pageLength": 3,
                 "lengthMenu": [3, 10, 25, 50, 100], // Specify the entries to show in the dropdown
             });
         });
     </script>
+        <script>
+            $(function () {
+                $('.js-basic-user').DataTable({
+                    "pageLength": 3,
+                    "lengthMenu": [3, 10, 25, 50, 100], // Specify the entries to show in the dropdown
+                });
+            });
+        </script>
 @endpush
