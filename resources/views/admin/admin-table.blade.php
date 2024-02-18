@@ -160,6 +160,7 @@
     </section>
 
         <!-- Default Size -->
+        @foreach ($data as $row)
         <div class="modal fade" id="approvalModal{{ $row->id }}" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -167,41 +168,38 @@
                         <button type="button" class="btn btn-link waves-effect" data-dismiss="modal" style="font-size: 12px">CLOSE</button>
                     </div>
                     <div class="modal-body">
-                    <form action="{{ route('admin.approvalcuti', $row->id) }}" method="POST">
-                        @csrf
-                        <div class="form-group form-float">
-                            Tanggal Persetujuan
+                        <form id="approvalForm{{ $row->id }}" action="{{ route('admin.approvalcuti', $row->id) }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="action" id="action{{ $row->id }}" value="">
+                            <!-- Tambahkan hidden input untuk menyimpan nilai 1 atau 0 -->
+                            <input type="hidden" name="approval" id="approval{{ $row->id }}" value="">
+                            <div class="form-group form-float">
+                                Tanggal Persetujuan
                                 <div class="input-group">
                                     <div class="form-line">
-                                        <input type="date" name="tanggal_mulai" class="form-control" style="background-color: #fcfcfc" placeholder="Ex: dd/mm/yyyy" required>
+                                        <input type="date" name="approval_date" class="form-control" style="background-color: #fcfcfc" placeholder="Ex: dd/mm/yyyy" required>
                                     </div>
                                 </div>
-                        </div>
+                            </div>
                     </div>
                     <div class="modal-footer centered">
-                        <button type="submit" class="button button1" style="text-decoration:none;">APPROVE</button>
-                        <button type="submit" class="button button3" style="text-decoration:none;">REJECT</button>
+                        <button type="button" class="button button1" style="text-decoration:none;" onclick="setActionAndSubmit('approve', {{ $row->id }})">APPROVE</button>
+                        <button type="button" class="button button3" style="text-decoration:none;" onclick="setActionAndSubmit('reject', {{ $row->id }})">REJECT</button>
                     </div>
                     </form>
                 </div>
             </div>
         </div>
+        @endforeach
+
     @endsection
     @push('after-scripts')
-        {{-- select2 for Users --}}
+        {{-- script action approve and reject --}}
         <script>
-            $("#approveUsers").select2({
-                tags: true,
-            });
-        </script>
-        <script>
-            $("#approveUnit").select2({
-                tags: true,
-            });
-        </script>
-        <script>
-            $("#approveRuangan").select2({
-                tags: true,
-            });
+            function setActionAndSubmit(action, id)
+            {
+                document.getElementById('action' + id).value = action;
+                document.getElementById('approvalForm' + id).submit();
+            }
         </script>
     @endpush

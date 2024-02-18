@@ -10,8 +10,7 @@ class sdm_cuti extends Model
     use HasFactory;
     protected $table = 'sdm_cuti';
     protected $guarded =[];
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'nik', 'nik');
-    }
+    protected $casts = [
+        'approval' => 'integer', // Cast kolom 'approval' sebagai integer
+    ];
 }

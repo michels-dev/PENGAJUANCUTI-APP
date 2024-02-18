@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('sdm_cuti', function (Blueprint $table) {
             $table->id();
             $table->string('nik', 20);
-            $table->dateTime('tanggal_mulai');
-            $table->boolean('approval')->default(false);
-            $table->dateTime('approval_date')->nullable();
+            $table->date('tanggal_mulai');
+            $table->tinyInteger('approval')->nullable();
+            $table->date('approval_date')->nullable();
             $table->text('keperluan');
             $table->string('hari', 255);
             $table->string('tipe', 255);

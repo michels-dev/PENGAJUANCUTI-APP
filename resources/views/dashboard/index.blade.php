@@ -73,12 +73,14 @@
                                                                 <div class="media-heading">
                                                                     <a class="m-r-10">{{ $row->nik }}</a>
                                                                     <span>
-                                                                        @if (!$row->approval)
+                                                                        @if ($row->approval === null)
                                                                             <span class="label bg-amber">Pending approval</span>
-                                                                        @elseif ($row->approval)
+                                                                        @elseif ($row->approval === 1)
                                                                             <a href="" class="label bg-light-green">approved</a>
-                                                                        @else
+                                                                        @elseif ($row->approval === 0)
                                                                             <a href="" class="label badge-warning text-white">not approved</a>
+                                                                        @else
+                                                                            <p>Silahkan Lakukan Status Persetujuan</p>
                                                                         @endif
                                                                     </span>
                                                                     <small class="float-right text-muted"><time class="hidden-sm-down" datetime="2017">{{ $row->tanggal_mulai }}</time></small>
@@ -124,13 +126,16 @@
                                                                 <div class="media-heading">
                                                                     <a class="m-r-10">{{ $row->nik }}</a>
                                                                     <span>
-                                                                        @if ($row->approval)
+                                                                        @if ($row->approval === null)
                                                                             <span class="label bg-amber">Pending approval</span>
-                                                                        @elseif ($row->approval)
+                                                                        @elseif ($row->approval === 1)
                                                                             <a href="" class="label bg-light-green">approved</a>
-                                                                        @else
+                                                                        @elseif ($row->approval === 0)
                                                                             <a href="" class="label badge-warning text-white">not approved</a>
+                                                                        @else
+                                                                            <p>Silahkan Lakukan Status Persetujuan</p>
                                                                         @endif
+
                                                                     </span>
                                                                     <small class="float-right text-muted"><time class="hidden-sm-down" datetime="2017">{{ $row->tanngal_mulai }}</time></small>
                                                                 </div>

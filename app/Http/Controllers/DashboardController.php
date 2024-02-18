@@ -13,22 +13,27 @@ class DashboardController extends Controller
     {
         $user= Auth::user();
 
-        $totalToday = sdm_cuti::where('nik', $user->nik)->where('tanggal_mulai', '>=', now())->count();
+        $totalToday = sdm_cuti::where('nik', $user->nik)
+        ->where('tanggal_mulai', '>=', today())
+        ->count();
 
         if ($user->isAdmin()) {
             // Jika pengguna adalah admin, tampilkan semua data
-            $data = sdm_cuti::where('tanggal_mulai', '>=', now())->get();
+            $data = sdm_cuti::where('tanggal_mulai', '>=', today())->get();
         } else {
-            $data = sdm_cuti::where('nik', $user->nik)->where('tanggal_mulai', '>=', now())
+            $data = sdm_cuti::where('nik', $user->nik)
+            ->where('tanggal_mulai', '>=', today())
             ->where(function ($query){
-                $query->where('approval', 0)->orWhere('approval', 1);
+                $query->where('approval', null)
+                ->orWhere('approval', 0)
+                ->orWhere('approval', 1);
             })->get();
         }
 
-        $approved = sdm_cuti::where('approval', true)->count();
-        $notApproved = sdm_cuti::where('approval', false)->count();
+        $approved = sdm_cuti::where('approval', 1)->count();
+        $reject = sdm_cuti::where('approval', 0)->count();
 
-        return view('dashboard.index', compact('data', 'totalToday', 'approved', 'notApproved'));
+        return view('dashboard.index', compact('data', 'totalToday', 'approved', 'reject'));
     }
 
     public function formcuti()

@@ -10,8 +10,4 @@ class users extends Model
     use HasFactory;
     protected $table = 'users';
     protected $guarded =[];
-    public function sdmCuti()
-    {
-        return $this->hasMany(sdm_cuti::class, 'nik', 'nik');
-    }
 }
