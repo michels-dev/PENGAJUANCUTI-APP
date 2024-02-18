@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,11 @@ Route::middleware(['auth'])->name('dashboard.')->prefix('dashboard')->group(func
     Route::get('/index', [DashboardController::class, 'index'])->name('index');
     Route::get('/formcuti', [DashboardController::class, 'formcuti'])->name('form-cuti');
     Route::post('/store', [DashboardController::class, 'store'])->name('store');
+});
+
+// Route AKses Users
+Route::middleware(['auth'])->name('users.')->prefix('users')->group(function(){
+    Route::get('/userstable', [UsersController::class, 'userstable'])->name('users-table');
 });
 
 // Route Akses Login

@@ -71,7 +71,7 @@
             <li><a href=""><i class="zmdi zmdi-label-alt"></i><span>Update Data</span></a></li>
             @endif
             <li class="header">USERS DASHBOARD</li>
-            <li><a href=""><i class="zmdi zmdi-view-web"></i></i><span>Users Table</span></a></li>
+            <li><a href="{{ route('users.users-table') }}"><i class="zmdi zmdi-view-web"></i></i><span>Users Table</span></a></li>
         </ul>
     </div>
     <!-- #Menu -->

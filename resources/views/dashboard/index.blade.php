@@ -149,7 +149,6 @@
                                                 @else
                                                     <p>Status Persetujuan Tidak Valid</p>
                                                 @endif
-
                                             </span>
                                         </td>
                                     </tr>
