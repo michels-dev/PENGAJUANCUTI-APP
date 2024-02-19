@@ -1,9 +1,10 @@
-@extends('layouts.dashboard')
+@extends('layouts.datatables')
 {{-- Memanggil Yield --}}
 @section('title', 'Table Admin')
 @section('content')
     {{-- Fitur --}}
     {{-- Sidebar --}}
+    @include('')
     @include('components.sidebar')
     {{-- End Sidebar --}}
     @push('after-styles')
@@ -78,119 +79,62 @@
         }
     </style>
     @endpush
-    <section class="content blog-page">
-        <div class="block-header">
-            <div class="row">
-                <div class="col-lg-7 col-md-6 col-sm-12">
-                    <h2>Blog Admin Tables
-                        <small>Welcome to SAS BPK Penabur Jakarta</small>
-                    </h2>
-                </div>
-                <div class="col-lg-5 col-md-6 col-sm-12">
-                </div>
-            </div>
-        </div>
-            <div class="row clearfix">
-                <div class="col-sm-12">
-                     <div class="card">
-                        <div class="header">
-                            <h2>Tables Admin Pengajuan Cuti</h2>
-                            {{-- <a href="" class="btn badge-secondary text-white"><i class="zmdi zmdi-file"></i></a>
-                            <a href="" class="btn badge-secondary text-white"><i class="zmdi zmdi-cloud-download"></i></a> --}}
-                            <div class="demo-button-groups">
-                            <ul class="header-dropdown m-r--5">
-                                <li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="">Go To Dashboard</a></li>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="body">
-                            <div class="btn-group mb-3" role="group">
-                                    <a href="" class="btn btn-default waves-effect">Delete All</a>
-                                    <button type="button" class="btn btn-default waves-effect">PDF</button>
-                                    <button type="button" class="btn btn-default waves-effect">Excel</button>
-                            </div>
-                            <div class="table-responsive social_media_table">
-                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Nik</th>
-                                            <th>Tanggal Mulai</th>
-                                            <th>Status</th>
-                                            <th>Tanggal Persetujuan</th>
-                                            <th>Keperluan</th>
-                                            <th>Hari</th>
-                                            <th>Tipe</th>
-                                            <th>Pengganti</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    @php
-                                        $no = 1;
-                                    @endphp
-                                    @foreach ($data as $index => $row)
-                                    <tr>
-                                        <th scope="row">{{ $no++ }}</th>
-                                        <td>{{ $row->nik }}</td>
-                                        <td>{{ $row->tanggal_mulai }}</td>
-                                        <td><button type="button" class="btn  btn-raised bg-deep-purple btn-sm waves-effect" data-toggle="modal" data-target="#approvalModal{{ $row->id }}">APPROVAL</button></td>
-                                        <td>{{ $row->approval_date }}</td>
-                                        <td>{{ $row->keperluan }}</td>
-                                        <td>{{ $row->hari }}</td>
-                                        <td>{{ $row->tipe }}</td>
-                                        <td>{{ $row->pengganti }}</td>
-                                        <!-- Kolom Aksi -->
-                                        <td>
-                                            <a href="" class="button button2"><i class="zmdi zmdi-eye"></i></i></a>
-                                            <button type="button" class="button button1" data-toggle="modal" data-target="#rejectedModal{{ $row->id }}"><i class="zmdi zmdi-edit"></i></button>
-                                            <button type="button" class="button button3" data-toggle="modal" data-target="#rejectedModal{{ $row->id }}"><i class="zmdi zmdi-delete"></i></button>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </section>
 
-        <!-- Default Size -->
-        @foreach ($data as $row)
-        <div class="modal fade" id="approvalModal{{ $row->id }}" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header right" style="text-align: right;">
-                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal" style="font-size: 12px">CLOSE</button>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                          <h3 class="card-title">DataTable with default features</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                          <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                              <th>Rendering engine</th>
+                              <th>Browser</th>
+                              <th>Platform(s)</th>
+                              <th>Engine version</th>
+                              <th>CSS grade</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                              <td>Trident</td>
+                              <td>Internet
+                                Explorer 4.0
+                              </td>
+                              <td>Win 95+</td>
+                              <td> 4</td>
+                              <td>X</td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                              <th>Rendering engine</th>
+                              <th>Browser</th>
+                              <th>Platform(s)</th>
+                              <th>Engine version</th>
+                              <th>CSS grade</th>
+                            </tr>
+                            </tfoot>
+                          </table>
+                        </div>
+                        <!-- /.card-body -->
+                      </div>
+                      <!-- /.card -->
                     </div>
-                    <div class="modal-body">
-                        <form id="approvalForm{{ $row->id }}" action="{{ route('admin.approvalcuti', $row->id) }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="action" id="action{{ $row->id }}" value="">
-                            <!-- Tambahkan hidden input untuk menyimpan nilai 1 atau 0 -->
-                            <input type="hidden" name="approval" id="approval{{ $row->id }}" value="">
-                            <div class="form-group form-float">
-                                Tanggal Persetujuan
-                                <div class="input-group">
-                                    <div class="form-line">
-                                        <input type="date" name="approval_date" class="form-control" style="background-color: #fcfcfc" placeholder="Ex: dd/mm/yyyy" required>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                    <div class="modal-footer centered">
-                        <button type="button" class="button button1" style="text-decoration:none;" onclick="setActionAndSubmit('approve', {{ $row->id }})">APPROVE</button>
-                        <button type="button" class="button button3" style="text-decoration:none;" onclick="setActionAndSubmit('reject', {{ $row->id }})">REJECT</button>
-                    </div>
-                    </form>
+                    <!-- /.col -->
+                  </div>
+                  <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
                 </div>
             </div>
         </div>
-        @endforeach
+    </section>
 
     @endsection
     @push('after-scripts')
@@ -202,4 +146,22 @@
                 document.getElementById('approvalForm' + id).submit();
             }
         </script>
+    <!-- Page specific script -->
+    <script>
+        $(function () {
+        $("#adminTable").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+        });
+    </script>
     @endpush

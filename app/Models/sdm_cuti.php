@@ -13,4 +13,9 @@ class sdm_cuti extends Model
     protected $casts = [
         'approval' => 'integer', // Cast kolom 'approval' sebagai integer
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(users::class, 'user_created', 'email');
+    }
 }

@@ -11,24 +11,19 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        $user= Auth::user();
+        $user = Auth::user();
 
-        $totalToday = sdm_cuti::where('nik', $user->nik)
-        ->where('tanggal_mulai', '>=', today())
+        $totalToday = sdm_cuti::where('user_created', Auth::user()->email)->where('tanggal_mulai', '>=', today())
         ->count();
 
         if ($user->isAdmin()) {
-            // Jika pengguna adalah admin, tampilkan data pending approval
+            // Jika pengguna adalah admin, tampilkan semua data
             $data = sdm_cuti::where('tanggal_mulai', '>=', today())
-            ->whereNull('approval')
-            ->get();
+                ->get();
         } else {
-            $data = sdm_cuti::where('tanggal_mulai', '>=', today())
-            ->where(function ($query){
-                $query->where('approval', null)
-                ->orWhere('approval', 0)
-                ->orWhere('approval', 1);
-            })->get();
+            $data = sdm_cuti::where('user_created', Auth::user()->email)->where('tanggal_mulai', '>=', today())
+            ->get();
+            // dd($data);
         }
         // visualisasi data
         $pending = sdm_cuti::where('approval', null)->count();
@@ -54,6 +49,7 @@ class DashboardController extends Controller
             'keperluan' =>'required',
             'pengganti' =>'required',
             'bukti_dokumen' =>'required',
+            'user_created' =>'required',
         ]);
 
         sdm_cuti::create([
@@ -64,6 +60,7 @@ class DashboardController extends Controller
             'keperluan' =>$validatedData['keperluan'],
             'pengganti' =>$validatedData['pengganti'],
             'bukti_dokumen' =>$validatedData['bukti_dokumen'],
+            'user_created' =>$validatedData['user_created'],
         ]);
         return redirect()->route('dashboard.index');
     }

@@ -141,6 +141,17 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row clearfix">
+                                <div class="col-lg-12 col-sm-6 col-md-6 col-xs-12 mt-3">
+                                    <div class="card" style="background-color: #fcfcfc">
+                                        <div class="body">
+                                            <div class="form-group form-float">
+                                                    <input type="hidden" class="form-control" name="user_created" value="{{ Auth::user()->email }}" style="background-color: #fcfcfc" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <button class="btn btn-raised btn-primary waves-effectt" style="float: right;" type="submit">SAVE</button>
                         </form>
                     </div>
