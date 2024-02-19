@@ -1,167 +1,145 @@
-@extends('layouts.datatables')
-{{-- Memanggil Yield --}}
-@section('title', 'Table Admin')
+@extends('layouts.dashboard')
+@section('title', 'Admin Tables')
 @section('content')
-    {{-- Fitur --}}
-    {{-- Sidebar --}}
-    @include('')
+    @include('components.navbar')
     @include('components.sidebar')
-    {{-- End Sidebar --}}
     @push('after-styles')
-    <style>
-        /* css modal header */
-        .right {
-            display: flex;
-            justify-content: right;
-            align-items: right;
-            height: 100%;
-        }
 
-        /* css center buttons modals */
-        .centered {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
-
-        /* css buttons */
-        .button {
-            background-color: #04AA6D; /* Green */
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 14px;
-            margin: 2px;
-            transition-duration: 0.4s;
-            cursor: pointer;
-        }
-        .button1 {
-            background-color: white;
-            color: green;
-            border: 2px solid #04AA6D;
-        }
-
-        .button1:hover {
-            background-color: #04AA6D;
-            color: white;
-        }
-
-        .button2 {
-            background-color: white;
-            color: blue;
-            border: 2px solid #008CBA;
-        }
-
-        .button2:hover {
-            background-color: #008CBA;
-            color: white;
-        }
-
-        .button3 {
-            background-color: white;
-            color: red;
-            border: 2px solid #f44336;
-        }
-
-        .button3:hover {
-            background-color: #f44336;
-            color: white;
-        }
-
-        /* Tambahkan CSS ini atau integrasikan dengan file CSS Anda */
-        .scrollable-modal-body {
-            max-height: calc(70vh - 200px); /* Sesuaikan nilai sesuai kebutuhan */
-            overflow-y: auto;
-        }
-    </style>
     @endpush
 
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                          <h3 class="card-title">DataTable with default features</h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                          <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                            <tr>
-                              <th>Rendering engine</th>
-                              <th>Browser</th>
-                              <th>Platform(s)</th>
-                              <th>Engine version</th>
-                              <th>CSS grade</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                              <td>Trident</td>
-                              <td>Internet
-                                Explorer 4.0
-                              </td>
-                              <td>Win 95+</td>
-                              <td> 4</td>
-                              <td>X</td>
-                            </tr>
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                              <th>Rendering engine</th>
-                              <th>Browser</th>
-                              <th>Platform(s)</th>
-                              <th>Engine version</th>
-                              <th>CSS grade</th>
-                            </tr>
-                            </tfoot>
-                          </table>
-                        </div>
-                        <!-- /.card-body -->
-                      </div>
-                      <!-- /.card -->
-                    </div>
-                    <!-- /.col -->
-                  </div>
-                  <!-- /.row -->
-                </div>
-                <!-- /.container-fluid -->
-                </div>
-            </div>
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h3>Admin Tables</h3>
+          </div>
+          <div class="col-sm-6" style="font-size: 14px">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Blank Page</li>
+            </ol>
+          </div>
         </div>
+      </div><!-- /.container-fluid -->
     </section>
 
-    @endsection
-    @push('after-scripts')
-        {{-- script action approve and reject --}}
-        <script>
-            function setActionAndSubmit(action, id)
-            {
-                document.getElementById('action' + id).value = action;
-                document.getElementById('approvalForm' + id).submit();
-            }
-        </script>
-    <!-- Page specific script -->
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+          <h1 class="card-title">Data Pengajuan Cuti</h1>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-body">
+            <table id="adminTable" class="table table-bordered table-striped" style="font-size: 15px; background-color: white">
+                <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>Nik</th>
+                  <th>Email</th>
+                  <th>Status</th>
+                  <th>Persetujuan</th>
+                  <th>Aksi</th>
+                </tr>
+                </thead>
+                <tbody>
+               @php
+                   $no = 1;
+               @endphp
+                @foreach ($data as $row)
+                <tr>
+                  <td>{{ $no++ }}</td>
+                  <td>{{ $row->nik }}</td>
+                  <td>{{ $row->user_created }}</td>
+                  <td><button type="button" class="btn  btn-outline-info" data-toggle="modal" data-target="#approvalModal{{ $row->id }}">APPROVAL</button></td>
+                  <td>{{ $row->approval_date }}</td>
+                  <td>
+                    <button type="button" class="btn btn-outline-primary"><i class="fas fa-eye"></i></button>
+                    <button type="button" class="btn btn-outline-success"><i class="fas fa-edit"></i></button>
+                    <button type="button" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
+                  </td>
+                </tr>
+                </tbody>
+                @endforeach
+            </table>
+        </div>
+        <!-- /.card-footer-->
+      </div>
+      <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+          <!-- Default Size -->
+          @foreach ($data as $row)
+          <div class="modal fade" id="approvalModal{{ $row->id }}" tabindex="-1" role="dialog">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal Approval</h5>
+                        <button type="button" class="btn btn-link" data-dismiss="modal" style="font-size: 12px">CLOSE</button>
+                      </div>
+                      <div class="modal-body">
+                          <form id="approvalForm{{ $row->id }}" action="{{ route('admin.approvalcuti', $row->id) }}" method="POST">
+                              @csrf
+                              <input type="hidden" name="action" id="action{{ $row->id }}" value="">
+                              <!-- Tambahkan hidden input untuk menyimpan nilai 1 atau 0 -->
+                              <input type="hidden" name="approval" id="approval{{ $row->id }}" value="">
+                              <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Tanggal Persetujuan</label>
+                                <input type="date" class="form-control" name="approval_date" placeholder="Ex: dd/mm/yyyy">
+                              </div>
+                      </div>
+                      <div class="modal-footer" style="text-align: center;">
+                        <button type="button" class="btn btn-outline-primary mr-2" onclick="setActionAndSubmit('approve', {{ $row->id }})">APPROVE</button>
+                        <button type="button" class="btn btn-outline-danger" onclick="setActionAndSubmit('reject', {{ $row->id }})">REJECT</button>
+                    </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+          @endforeach
+
+@endsection
+
+@push('after-scripts')
+<script>
+    $(function () {
+      $('#adminTable').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+        "dom": '<"top"f>rt<"text-left"i><"top text-center"p>',
+      });
+    });
+  </script>
+
+    {{-- script action approve and reject --}}
     <script>
-        $(function () {
-        $("#adminTable").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        });
-        });
+        function setActionAndSubmit(action, id)
+        {
+            document.getElementById('action' + id).value = action;
+            document.getElementById('approvalForm' + id).submit();
+        }
     </script>
-    @endpush
+@endpush

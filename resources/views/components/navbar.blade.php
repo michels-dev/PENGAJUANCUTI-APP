@@ -15,14 +15,14 @@
 
       <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
+        <span class="nav-link" data-toggle="dropdown" href="#">
           <i class="fas fa-user-alt"></i>
           <small>{{ Auth::user()->name }} ({{ Auth::user()->role }})</small>
-        </a>
+        </span>
       </li>
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
+        <a href="{{ route('auth.logout') }}" class="nav-link">
           <i class="fas fa-sign-out-alt"></i>
           <small>Logout</small>
         </a>
