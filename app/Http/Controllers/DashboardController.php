@@ -62,6 +62,6 @@ class DashboardController extends Controller
             'bukti_dokumen' =>$validatedData['bukti_dokumen'],
             'user_created' =>$validatedData['user_created'],
         ]);
-        return redirect()->route('dashboard.index');
+        return redirect()->route('users.users-table');
     }
 }

@@ -90,7 +90,7 @@
     <strong>BPK PENABUR Jakarta &copy; 2024.</strong>
   </footer>
 
-    @endsection
+@endsection
 
     {{-- Script After --}}
 @push('after-scripts')
