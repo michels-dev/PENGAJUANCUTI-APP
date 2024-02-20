@@ -100,7 +100,7 @@
                               @csrf
                               <input type="hidden" name="action" id="action{{ $row->id }}" value="">
                               <!-- Tambahkan hidden input untuk menyimpan nilai 1 atau 0 -->
-                              <input type="hidden" name="approval" id="approval{{ $row->id }}" value="">
+                              {{-- <input type="hidden" name="approval" id="approval{{ $row->id }}" value=""> --}}
                               <div class="mb-3">
                                 <label>Tanggal Persetujuan <span class="text-danger">*</span></label>
                                 <div class="input-group date" id="reservationdate" data-target-input="nearest">
