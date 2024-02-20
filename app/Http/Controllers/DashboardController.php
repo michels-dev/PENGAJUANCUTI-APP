@@ -45,18 +45,21 @@ class DashboardController extends Controller
             'nik' =>'required',
             'tipe' =>'required',
             'hari' =>'required',
-            'tanggal_mulai' =>'required',
+            'tanggal_mulai' =>'required|date_format:m/d/Y',
             'keperluan' =>'required',
             'pengganti' =>'required',
             'bukti_dokumen' =>'required',
             'user_created' =>'required',
         ]);
 
+        // Mengubah format tanggal menjadi yyyy-mm-dd
+        $tanggal_mulai = date('Y-m-d', strtotime($validatedData['tanggal_mulai']));
+
         sdm_cuti::create([
             'nik' =>$validatedData['nik'],
             'tipe' =>$validatedData['tipe'],
             'hari' =>$validatedData['hari'],
-            'tanggal_mulai' =>$validatedData['tanggal_mulai'],
+            'tanggal_mulai' =>$tanggal_mulai,
             'keperluan' =>$validatedData['keperluan'],
             'pengganti' =>$validatedData['pengganti'],
             'bukti_dokumen' =>$validatedData['bukti_dokumen'],

@@ -59,7 +59,7 @@
                 <div class="row mt-3" style="font-size: 14px">
                     <div class="col-6">
                         <label>Jenis Cuti <span class="text-danger">*</span></label>
-                        <select name="tipe" class="select2bs4" multiple="multiple" style="width: 100%;" data-placeholder="Select Cuti">
+                        <select name="tipe" class="cuties" multiple="multiple" style="width: 100%;" data-placeholder="Select Cuti">
                             @foreach($masterCuti as $cuti)
                             <option value="{{ $cuti->kode }}">{{ $cuti->keterangan}}</option>
                             @endforeach
@@ -74,7 +74,7 @@
                     <div class="col-6">
                         <label>Tanggal Cuti <span class="text-danger">*</span></label>
                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                            <input type="date" name="tanggal_mulai" class="form-control"/>
+                            <input type="text" name="tanggal_mulai" class="form-control datetimepicker-input" data-target="#reservationdate"/>
                             <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
@@ -129,12 +129,12 @@
 @endsection
 
 @push('after-scripts')
-  {{-- <script>
+  <script>
         //Date picker
         $('#reservationdate').datetimepicker({
         format: 'L'
     });
-  </script> --}}
+  </script>
 
     <script>
         // File input
@@ -145,7 +145,7 @@
 
     <script>
         //Initialize Select2 Elements
-        $('.select2bs4').select2({
+        $('.cuties').select2({
             theme: 'bootstrap4'
         })
     </script>
