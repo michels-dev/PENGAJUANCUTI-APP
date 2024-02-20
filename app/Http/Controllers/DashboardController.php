@@ -82,4 +82,13 @@ class DashboardController extends Controller
 
         return view('dashboard.table-approved', compact('data'));
     }
+
+    public function rejected()
+    {
+        $data = sdm_cuti::whereDate('tanggal_mulai', '>=', today())
+                 ->where('approval', 0)
+                 ->get();
+
+        return view('dashboard.table-rejected', compact('data'));
+    }
 }

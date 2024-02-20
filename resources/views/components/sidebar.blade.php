@@ -37,7 +37,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
+                <a href="{{ route('dashboard.table-rejected') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Cuti Rejected</p>
                 </a>

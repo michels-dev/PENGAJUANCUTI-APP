@@ -37,6 +37,7 @@ Route::middleware(['auth'])->name('dashboard.')->prefix('dashboard')->group(func
     Route::post('/store', [DashboardController::class, 'store'])->name('store');
     Route::get('/onhold', [DashboardController::class, 'onhold'])->name('table-onhold');
     Route::get('/approved', [DashboardController::class, 'approved'])->name('table-approved');
+    Route::get('/rejected', [DashboardController::class, 'rejected'])->name('table-rejected');
 });
 
 // Route AKses Users
