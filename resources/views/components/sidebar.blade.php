@@ -44,6 +44,7 @@
               </li>
             </ul>
           </li>
+          @if (Auth::user()->role == "admin")
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-fax"></i>
@@ -59,14 +60,9 @@
                   <p>Admin Tables</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="pages/tables/data.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Update Data</p>
-                </a>
-              </li>
             </ul>
           </li>
+          @endif
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
