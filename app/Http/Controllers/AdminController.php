@@ -27,13 +27,15 @@ class AdminController extends Controller
         // Lakukan pengecekan tindakan yang dipilih
         if ($request->action == 'approve') {
             // simpan approval date
-            $data->approval_date = $request->approval_date;
+            $approval_date = date('Y-m-d', strtotime($request->approval_date));
+            $data->approval_date = $approval_date;
 
             $data->update(['approval' => 1]);
             $message = 'Pengajuan Cuti Telah Disetujui';
         } elseif ($request->action == 'reject') {
             // simpan approval date
-            $data->approval_date = $request->approval_date;
+            $approval_date = date('Y-m-d', strtotime($request->approval_date));
+            $data->approval_date = $approval_date;
 
             $data->update(['approval' => 0]);
             $message = 'Pengajuan Cuti Tidak Disetujui';

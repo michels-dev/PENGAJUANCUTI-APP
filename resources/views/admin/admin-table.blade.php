@@ -102,13 +102,18 @@
                               <!-- Tambahkan hidden input untuk menyimpan nilai 1 atau 0 -->
                               <input type="hidden" name="approval" id="approval{{ $row->id }}" value="">
                               <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Tanggal Persetujuan</label>
-                                <input type="date" class="form-control" name="approval_date" placeholder="Ex: dd/mm/yyyy">
+                                <label>Tanggal Persetujuan <span class="text-danger">*</span></label>
+                                <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                    <input type="text" name="approval_date" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
                               </div>
                       </div>
                       <div class="modal-footer" style="text-align: center;">
-                        <button type="button" class="btn btn-outline-primary mr-2" onclick="setActionAndSubmit('approve', {{ $row->id }})">APPROVE</button>
-                        <button type="button" class="btn btn-outline-danger" onclick="setActionAndSubmit('reject', {{ $row->id }})">REJECT</button>
+                        <button type="button" class="btn btn-outline-primary mr-2 swalDefaultSuccess" onclick="setActionAndSubmit('approve', {{ $row->id }})">APPROVE</button>
+                        <button type="button" class="btn btn-outline-danger swalDefaultError" onclick="setActionAndSubmit('reject', {{ $row->id }})">REJECT</button>
                     </div>
                       </form>
                   </div>
@@ -142,4 +147,40 @@
             document.getElementById('approvalForm' + id).submit();
         }
     </script>
+
+    {{-- Tostr Approval --}}
+    <script>
+      $(function() {
+      var Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+      });
+
+      // Approved
+      $('.swalDefaultSuccess').click(function() {
+        Toast.fire({
+          icon: 'success',
+          title: 'Data persetujuan cuti telah disetujui.'
+        })
+      });
+
+      // Rejected
+      $('.swalDefaultError').click(function() {
+        Toast.fire({
+          icon: 'error',
+          title: 'Data persetujuan cuti tidak disetujui.'
+        })
+      });
+    });
+    </script>
+
+  <script>
+    //Date picker
+    $('#reservationdate').datetimepicker({
+    format: 'L'
+  });
+  </script>
+
 @endpush

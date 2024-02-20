@@ -36,6 +36,10 @@
     <!-- Select2 -->
     <link rel="stylesheet" href="{{ asset('adminlte3/plugins/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('adminlte3/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="{{ asset('adminlte3/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="{{ asset('adminlte3/plugins/toastr/toastr.min.css') }}">
 @stack('after-styles')
 
 </head>
@@ -98,6 +102,10 @@
 <script src="{{ asset('adminlte3/plugins/daterangepicker/daterangepicker.js') }}"></script>
 <!-- bs-custom-file-input -->
 <script src="{{ asset('adminlte3/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+<!-- SweetAlert2 -->
+<script src="{{ asset('adminlte3/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+<!-- Toastr -->
+<script src="{{ asset('adminlte3/plugins/toastr/toastr.min.js') }}"></script>
 @stack('after-scripts')
 
 </body>
