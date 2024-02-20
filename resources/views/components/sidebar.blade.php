@@ -77,7 +77,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/examples/lockscreen.html" class="nav-link">
+                <a href="{{ route('users.users-table') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Users Tables</p>
                 </a>
