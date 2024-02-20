@@ -154,6 +154,12 @@
           </div>
           @endforeach
 
+          <footer class="main-footer">
+            <div class="float-right d-none d-sm-block">
+              <b>SIM</b> |Sistem Informasi Manajemen
+            </div>
+            <strong>BPK PENABUR Jakarta &copy; 2024.</strong>
+          </footer>
 @endsection
 
 @push('after-scripts')
