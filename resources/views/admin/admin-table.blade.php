@@ -51,6 +51,7 @@
                   <th>No.</th>
                   <th>Nik</th>
                   <th>Email</th>
+                  <th>Tanggal Cuti</th>
                   <th>Status</th>
                   <th>Persetujuan</th>
                   <th>Aksi</th>
@@ -65,6 +66,7 @@
                   <td>{{ $no++ }}</td>
                   <td>{{ $row->nik }}</td>
                   <td>{{ $row->user_created }}</td>
+                  <td>{{ $row->tanggal_mulai }}</td>
                   <td><button type="button" class="btn  btn-outline-info" data-toggle="modal" data-target="#approvalModal{{ $row->id }}">APPROVAL</button></td>
                   <td>{{ $row->approval_date }}</td>
                   <td>

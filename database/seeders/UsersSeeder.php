@@ -33,6 +33,12 @@ class UsersSeeder extends Seeder
                 'password' => Hash::make('users123'),
                 'role' => 'user',
             ],
+            [
+                'name' => 'Marta Wea',
+                'email' => 'marta.wea@bpkpenaburjakarta.or.id',
+                'password' => Hash::make('users123'),
+                'role' => 'user',
+            ],
         ]);
     }
 }
