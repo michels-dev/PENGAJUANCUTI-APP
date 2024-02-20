@@ -41,7 +41,7 @@
           </div>
         </div>
         <div class="card-body">
-            <table id="example1" class="table table-bordered table-striped" style="font-size: 15px; background-color: white">
+            <table id="usersTable" class="table table-bordered table-striped" style="font-size: 15px; background-color: white">
                 <thead>
                     <tr>
                       <th>No.</th>
@@ -104,5 +104,18 @@
 @endsection
 
 @push('after-scripts')
-
+<script>
+    $(function () {
+      $('#usersTable').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+        "dom": '<"top"f>rt<"text-left"i><"top text-center"p>',
+      });
+    });
+  </script>
 @endpush
