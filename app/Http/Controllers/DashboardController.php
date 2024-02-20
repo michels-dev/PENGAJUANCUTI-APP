@@ -73,4 +73,13 @@ class DashboardController extends Controller
 
         return view('dashboard.table-onhold', compact('data'));
     }
+
+    public function approved()
+    {
+        $data = sdm_cuti::whereDate('tanggal_mulai', '>=', today())
+                 ->where('approval', 1)
+                 ->get();
+
+        return view('dashboard.table-approved', compact('data'));
+    }
 }

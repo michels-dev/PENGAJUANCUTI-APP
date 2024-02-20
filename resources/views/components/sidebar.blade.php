@@ -31,7 +31,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
+                <a href="{{ route('dashboard.table-approved') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Cuti Approved</p>
                 </a>
