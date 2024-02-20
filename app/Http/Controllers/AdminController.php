@@ -48,4 +48,13 @@ class AdminController extends Controller
         return redirect()->route('admin.admin-table');
     }
 
+    public function destroy($id)
+    {
+        $data = sdm_cuti::find($id);
+
+        $data->delete();
+
+        return redirect()->route('admin.admin-table');
+    }
+
 }

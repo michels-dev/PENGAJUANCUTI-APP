@@ -24,9 +24,9 @@ use Illuminate\Support\Facades\Route;
 // Route Akses Admin
 Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function(){
     Route::get('/admintable', [AdminController::class, 'admintable'])->name('admin-table');
-    Route::get('/updatecuti', [AdminController::class, 'updatecuti'])->name('update-cuti');
+    Route::get('/destroy/{id}', [AdminController::class, 'destroy'])->name('destroy');
 
-    // Aprroved cuti
+        // Aprroved cuti
         Route::post('/approvalcuti/{id}', [AdminController::class, 'approvalcuti'])->name('approvalcuti');
 });
 

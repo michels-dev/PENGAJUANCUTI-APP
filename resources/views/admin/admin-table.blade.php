@@ -70,7 +70,7 @@
                   <td>
                     <button type="button" class="btn btn-outline-primary"><i class="fas fa-eye"></i></button>
                     <button type="button" class="btn btn-outline-success"><i class="fas fa-edit"></i></button>
-                    <button type="button" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
+                    <a href="{{ route('admin.destroy', ['id' => $row->id]) }}" type="button" class="btn btn-outline-danger swalDeleteError"><i class="fas fa-trash"></i></a>
                   </td>
                 </tr>
                 </tbody>
@@ -171,6 +171,14 @@
         Toast.fire({
           icon: 'error',
           title: 'Data persetujuan cuti tidak disetujui.'
+        })
+      });
+
+        // Delect
+        $('.swalDeleteError').click(function() {
+        Toast.fire({
+          icon: 'error',
+          title: 'Data persetujuan cuti tersebut telah dihapus.'
         })
       });
     });
