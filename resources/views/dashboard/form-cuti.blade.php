@@ -42,7 +42,7 @@
             </button>
           </div>
         </div>
-        <form action="{{ route('dashboard.form-cuti') }}" method="POST">
+        <form action="{{ route('dashboard.store') }}" method="POST">
             @csrf
             <div class="card-body">
                 <input type="hidden" name="user_created" value="{{ Auth::user()->email }}">
@@ -52,19 +52,29 @@
                     <input type="text" class="form-control" name="nik">
                   </div>
                   <div class="col-6">
-                    <label>Jenis Cuti <span class="text-danger">*</span></label>
-                    <select name="tipe" class="select2bs4" multiple="multiple" style="width: 100%;" data-placeholder="Select Cuti">
-                        @foreach($masterCuti as $cuti)
-                        <option value="{{ $cuti->kode }}">{{ $cuti->keterangan}}</option>
-                        @endforeach
-                    </select>
+                    <label>Pengajuan <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" name="user_created" value="{{ Auth::user()->email }}" disabled>
                   </div>
+                </div>
+                <div class="row mt-3" style="font-size: 14px">
+                    <div class="col-6">
+                        <label>Jenis Cuti <span class="text-danger">*</span></label>
+                        <select name="tipe" class="select2bs4" multiple="multiple" style="width: 100%;" data-placeholder="Select Cuti">
+                            @foreach($masterCuti as $cuti)
+                            <option value="{{ $cuti->kode }}">{{ $cuti->keterangan}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label>Jumlah Hari <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="hari">
+                    </div>
                 </div>
                 <div class="row mt-3" style="font-size: 14px">
                     <div class="col-6">
                         <label>Tanggal Cuti <span class="text-danger">*</span></label>
                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                            <input type="text" name="tanggal_mulai" class="form-control datetimepicker-input" data-target="#reservationdate" placeholder="Ex: mm/dd/yyyy"/>
+                            <input type="date" name="tanggal_mulai" class="form-control"/>
                             <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
@@ -119,12 +129,12 @@
 @endsection
 
 @push('after-scripts')
-  <script>
+  {{-- <script>
         //Date picker
         $('#reservationdate').datetimepicker({
         format: 'L'
     });
-  </script>
+  </script> --}}
 
     <script>
         // File input
