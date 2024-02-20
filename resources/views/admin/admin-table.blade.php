@@ -69,7 +69,7 @@
                   <td>{{ $row->approval_date }}</td>
                   <td>
                     <button type="button" class="btn btn-outline-primary"><i class="fas fa-eye"></i></button>
-                    <button type="button" class="btn btn-outline-success"><i class="fas fa-edit"></i></button>
+                    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#updateModal{{ $row->id }}"><i class="fas fa-edit"></i></button>
                     <a href="{{ route('admin.destroy', ['id' => $row->id]) }}" type="button" class="btn btn-outline-danger swalDeleteError"><i class="fas fa-trash"></i></a>
                   </td>
                 </tr>
@@ -86,7 +86,7 @@
   </div>
   <!-- /.content-wrapper -->
 
-          <!-- Default Size -->
+          <!-- Approval Modal -->
           @foreach ($data as $row)
           <div class="modal fade" id="approvalModal{{ $row->id }}" tabindex="-1" role="dialog">
               <div class="modal-dialog" role="document">
@@ -114,6 +114,37 @@
                       <div class="modal-footer" style="text-align: center;">
                         <button type="button" class="btn btn-outline-primary mr-2 swalDefaultSuccess" onclick="setActionAndSubmit('approve', {{ $row->id }})">APPROVE</button>
                         <button type="button" class="btn btn-outline-danger swalDefaultError" onclick="setActionAndSubmit('reject', {{ $row->id }})">REJECT</button>
+                    </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+          @endforeach
+
+          <!-- Update Modal -->
+          @foreach ($data as $row)
+          <div class="modal fade" id="updateModal{{ $row->id }}" tabindex="-1" role="dialog">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal Update</h5>
+                      </div>
+                      <div class="modal-body">
+                          <form action="{{ route('admin.update', ['id'=>$row->id]) }}" method="POST">
+                              @csrf
+                              <div class="mb-3">
+                                <label>Tanggal Cuti <span class="text-danger">*</span></label>
+                                <div class="input-group date" id="updatedate" data-target-input="nearest">
+                                    <input type="text" name="tanggal_mulai" class="form-control datetimepicker-input" data-target="#updatedate"/>
+                                    <div class="input-group-append" data-target="#updatedate" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                              </div>
+                      </div>
+                      <div class="modal-footer" style="text-align: center;">
+                        <button type="button" class="btn btn-outline-info mr-2" data-dismiss="modal">Kembali</button>
+                        <button type="submit" class="btn btn-success mr-2 swalUpdatetSuccess">Update</button>
                     </div>
                       </form>
                   </div>
@@ -181,6 +212,14 @@
           title: 'Data persetujuan cuti tersebut telah dihapus.'
         })
       });
+
+        // Update
+        $('.swalUpdatetSuccess').click(function() {
+        Toast.fire({
+          icon: 'success',
+          title: 'Data persetujuan cuti telah diupdate.'
+        })
+      });
     });
     </script>
 
@@ -190,5 +229,11 @@
     format: 'L'
   });
   </script>
+    <script>
+      //Date picker
+      $('#updatedate').datetimepicker({
+      format: 'L'
+    });
+    </script>
 
 @endpush

@@ -57,4 +57,20 @@ class AdminController extends Controller
         return redirect()->route('admin.admin-table');
     }
 
+    public function update(Request $request, $id)
+    {
+        // Validate the request data
+        $request->validate([
+            'tanggal_mulai' => 'required|date_format:m/d/Y', // Memvalidasi format tanggal mm/dd/yyyy
+        ]);
+
+        // Ubah format tanggal menjadi Y-m-d
+        $tanggal_mulai = date('Y-m-d', strtotime($request->tanggal_mulai));
+
+        // Update record dengan tanggal_mulai yang baru
+        sdm_cuti::where('id', $id)->update(['tanggal_mulai' => $tanggal_mulai]);
+
+        return redirect()->route('admin.admin-table');
+    }
+
 }
