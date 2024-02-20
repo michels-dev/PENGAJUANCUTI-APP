@@ -38,8 +38,8 @@
     <link rel="stylesheet" href="{{ asset('adminlte3/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="{{ asset('adminlte3/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
-    <!-- Toastr -->
-    <link rel="stylesheet" href="{{ asset('adminlte3/plugins/toastr/toastr.min.css') }}">
+    {{-- toastr --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.css" rel="stylesheet">
 @stack('after-styles')
 
 </head>
@@ -104,8 +104,15 @@
 <script src="{{ asset('adminlte3/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
 <!-- SweetAlert2 -->
 <script src="{{ asset('adminlte3/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
-<!-- Toastr -->
-<script src="{{ asset('adminlte3/plugins/toastr/toastr.min.js') }}"></script>
+{{-- script toastr --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+
+  {{-- notifikasi toast --}}
+  <script>
+    @if (Session::has('success'))
+    toastr.success("{{Session::get('success')}}")
+    @endif
+  </script>
 @stack('after-scripts')
 
 </body>

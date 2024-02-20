@@ -41,11 +41,11 @@ class AdminController extends Controller
             $message = 'Pengajuan Cuti Tidak Disetujui';
         } else {
             // Jika tindakan tidak valid, kembalikan response dengan error
-            return redirect()->route('admin.admin-table')->with('error', 'Tindakan tidak valid.');
+            return redirect()->route('admin.admin-table');
         }
 
         // Redirect kembali ke halaman sebelumnya atau halaman tertentu
-        return redirect()->route('admin.admin-table')->with('success', $message);
+        return redirect()->route('admin.admin-table');
     }
 
 }

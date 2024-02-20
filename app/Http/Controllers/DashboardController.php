@@ -65,7 +65,7 @@ class DashboardController extends Controller
             'bukti_dokumen' =>$validatedData['bukti_dokumen'],
             'user_created' =>$validatedData['user_created'],
         ]);
-        return redirect()->route('users.users-table');
+        return redirect()->route('users.users-table')->with('success','Data persetujuan cuti anda telah berhasil ditambahkan.');
     }
 
     public function onhold()
