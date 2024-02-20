@@ -64,4 +64,13 @@ class DashboardController extends Controller
         ]);
         return redirect()->route('users.users-table');
     }
+
+    public function onhold()
+    {
+        $data = sdm_cuti::whereDate('tanggal_mulai', '>=', today())
+                 ->where('approval', null)
+                 ->get();
+
+        return view('dashboard.table-onhold', compact('data'));
+    }
 }

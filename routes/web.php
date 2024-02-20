@@ -35,6 +35,7 @@ Route::middleware(['auth'])->name('dashboard.')->prefix('dashboard')->group(func
     Route::get('/index', [DashboardController::class, 'index'])->name('index');
     Route::get('/formcuti', [DashboardController::class, 'formcuti'])->name('form-cuti');
     Route::post('/store', [DashboardController::class, 'store'])->name('store');
+    Route::get('/onhold', [DashboardController::class, 'onhold'])->name('table-onhold');
 });
 
 // Route AKses Users
