@@ -56,7 +56,7 @@
                     <h3>{{ $pending }}</h3>
                     <p>Cuti <span class="text-bold">On-Hold</span></p>
                 </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ route('dashboard.table-onhold') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <div class="col-lg-4 col-6">
@@ -65,7 +65,7 @@
                 <h3>{{ $approved }}</h3>
                 <p>Cuti <span class="text-bold">Approved</span></p>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ route('dashboard.table-approved') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
         </div>
         <div class="col-lg-4 col-6">
@@ -74,7 +74,7 @@
                     <h3>{{ $rejected }}</h3>
                     <p>Cuti <span class="text-bold">Rejected</span></p>
                 </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ route('dashboard.table-rejected') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
       </div>
