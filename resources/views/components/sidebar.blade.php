@@ -5,8 +5,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex" style="text-align:center">
         <div class="image">
+          <a href="{{ route('dashboard.index') }}">
           <img src="{{ asset('image/logopenabur.png') }}" alt="User Image" style="width: 50%;">
           <h5 class="text-white mt-3">BPK PENABUR Jakarta</h5>
+          </a>
         </div>
       </div>
 

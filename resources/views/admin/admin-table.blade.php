@@ -53,6 +53,7 @@
                   <th>Email</th>
                   <th>Tanggal Cuti</th>
                   <th>Selesai Cuti</th>
+                  <th>Jumlah Hari</th>
                   <th>Status</th>
                   <th>Persetujuan</th>
                   <th>Aksi</th>
@@ -69,6 +70,7 @@
                   <td>{{ $row->user_created }}</td>
                   <td>{{ date('d/m/Y', strtotime($row->tanggal_mulai)) }}</td>
                   <td>{{ date('d/m/Y', strtotime($row->tanggal_selesai)) }}</td>
+                  <td>{{ $row->hari }}</td>
                   <td><button type="button" class="btn  btn-outline-info" data-toggle="modal" data-target="#approvalModal{{ $row->id }}">APPROVAL</button></td>
                   <td>{{$row->approval_date}}</td>
                   <td>
@@ -134,23 +136,30 @@
               <h5 class="modal-title">Modal Cancel Cuti</h5>
             </div>
             <div class="modal-body">
-              <small class="text-danger">* Silahkan hapus form input tanggal cuti dan masukkan kembali tanggal cuti Anda.</small>
                 <form action="{{ route('admin.cancel', ['id'=>$row->id]) }}" method="POST">
                     @csrf
                     <input type="hidden" name="approval" value="{{ $row->approval }}">
                     <input type="hidden" name="approval_date" value="{{ $row->approval_date }}">
-                    <div class="mb-3">
-                      <label>Tanggal Cuti <span class="text-danger">*</span></label>
-                      <input type="date" name="tanggal_mulai" class="form-control" value="{{ date('Y-m-d', strtotime($row->tanggal_mulai)) }}"/>
+                    <div class="row">
+                      <div class="col-6">
+                        <label>Tanggal Cuti <span class="text-danger">*</span></label>
+                        <input type="date" name="tanggal_mulai" class="form-control" value="{{ date('Y-m-d', strtotime($row->tanggal_mulai)) }}"/>
+                      </div>
+                      <div class="col-6">
+                        <label>Tanggal Selesai <span class="text-danger">*</span></label>
+                        <input type="date" name="tanggal_selesai" class="form-control" value="{{ date('Y-m-d', strtotime($row->tanggal_selesai)) }}"/>
+                      </div>
                     </div>
-                    <div class="mb-3">
-                      <label>Tanggal Selesai <span class="text-danger">*</span></label>
-                      <input type="date" name="tanggal_selesai" class="form-control" value="{{ date('Y-m-d', strtotime($row->tanggal_selesai)) }}"/>
+                    <div class="row mt-3">
+                      <div class="col-12">
+                        <label>Hari <span class="text-danger">*</span></label>
+                        <input type="hari" name="hari" class="form-control" value="{{ $row->hari }}"/>
+                      </div>
                     </div>
             </div>
             <div class="modal-footer" style="text-align: center;">
               <button type="button" class="btn btn-outline-info mr-2" data-dismiss="modal">Kembali</button>
-              <button type="submit" class="btn btn-warning mr-2 swalUpdatetSuccess">Cancel</button>
+              <button type="submit" class="btn btn-warning mr-2 swalCancelWarning">Cancel</button>
           </div>
             </form>
         </div>
@@ -167,6 +176,29 @@
 @endsection
 
 @push('after-scripts')
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const startDateInput = document.querySelector('[name="tanggal_mulai"]');
+      const endDateInput = document.querySelector('[name="tanggal_selesai"]');
+      const daysInput = document.querySelector('[name="hari"]');
+
+      function calculateDays() {
+          const startDate = new Date(startDateInput.value);
+          const endDate = new Date(endDateInput.value);
+          const timeDiff = endDate - startDate;
+          const diffDays = timeDiff ? (timeDiff / (1000 * 60 * 60 * 24)) + 1 : ''; // Tambahkan 1 untuk menghitung termasuk hari terakhir
+          daysInput.value = diffDays ? diffDays + " Hari" : ''; // Pastikan ini mengupdate input yang benar
+      }
+
+      startDateInput.addEventListener('change', calculateDays);
+      endDateInput.addEventListener('change', calculateDays);
+
+      // Panggil calculateDays sekali untuk menghitung hari berdasarkan nilai awal
+      calculateDays();
+  });
+</script>
+
+
 <script>
     $(function () {
       $('#adminTable').DataTable({
@@ -225,11 +257,11 @@
         })
       });
 
-        // Update
-        $('.swalUpdatetSuccess').click(function() {
+        // Cancel
+        $('.swalCancelWarning').click(function() {
         Toast.fire({
-          icon: 'success',
-          title: 'Data persetujuan cuti telah diupdate.'
+          icon: 'warning',
+          title: 'Data persetujuan cuti telah dicancel.'
         })
       });
     });
@@ -241,4 +273,6 @@
     format: 'L'
   });
   </script>
+
+
 @endpush

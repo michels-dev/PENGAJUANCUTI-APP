@@ -49,6 +49,7 @@
                       <th>Pengajuan</th>
                       <th>Tanggal Cuti</th>
                       <th>Selesai Cuti</th>
+                      <th>Jumlah Hari</th>
                       <th>Status</th>
                       <th>Tanggal Persetujuan</th>
                     </tr>
@@ -64,6 +65,7 @@
                         <td>{{ $row->user_created }}</td>
                         <td>{{ date('d/m/Y', strtotime($row->tanggal_mulai)) }}</td>
                         <td>{{ date('d/m/Y', strtotime($row->tanggal_selesai)) }}</td>
+                        <td>{{ $row->hari }}</td>
                         <td>
                             <span>
                                 @if ($row->approval === null)

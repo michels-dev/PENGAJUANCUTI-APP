@@ -61,18 +61,21 @@ class AdminController extends Controller
     {
         // Validate the request data
         $request->validate([
-            'tanggal_mulai' => 'required|date', // Pastikan ini sebagai date tanpa format spesifik
-            'tanggal_selesai' => 'required|date', // Pastikan ini sebagai date tanpa format spesifik
+            'tanggal_mulai' => 'required|date',
+            'tanggal_selesai' => 'required|date',
+            'hari' => 'required|string',
         ]);
 
         // Tidak perlu mengubah format jika input sudah dalam YYYY-MM-DD
         $tanggal_mulai = $request->tanggal_mulai;
         $tanggal_selesai = $request->tanggal_selesai;
+        $hari = $request->hari;
 
         // Update record dengan tanggal_mulai yang baru
         sdm_cuti::where('id', $id)->update([
             'tanggal_mulai' => $tanggal_mulai,
             'tanggal_selesai' => $tanggal_selesai,
+            'hari' => $hari,
             'approval' => null, // Mengatur ulang approval menjadi null
             'approval_date' => null,
         ]);
