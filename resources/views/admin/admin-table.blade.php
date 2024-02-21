@@ -109,12 +109,7 @@
                               {{-- <input type="hidden" name="approval" id="approval{{ $row->id }}" value=""> --}}
                               <div class="mb-3">
                                 <label>Tanggal Persetujuan <span class="text-danger">*</span></label>
-                                <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                    <input type="text" name="approval_date" class="form-control datetimepicker-input" data-target="#reservationdate"/>
-                                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                    </div>
-                                </div>
+                                <input type="date" name="approval_date" class="form-control"/>
                               </div>
                       </div>
                       <div class="modal-footer" style="text-align: center;">
