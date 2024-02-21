@@ -11,26 +11,12 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        $user = Auth::user();
-
-        $totalToday = sdm_cuti::where('user_created', Auth::user()->email)->where('tanggal_mulai', '>=', today())
-        ->count();
-
-        if ($user->isAdmin()) {
-            // Jika pengguna adalah admin, tampilkan semua data
-            $data = sdm_cuti::where('tanggal_mulai', '>=', today())
-                ->get();
-        } else {
-            $data = sdm_cuti::where('user_created', Auth::user()->email)->where('tanggal_mulai', '>=', today())
-            ->get();
-            // dd($data);
-        }
         // visualisasi data
         $pending = sdm_cuti::where('approval', null)->count();
         $approved = sdm_cuti::where('approval', 1)->count();
         $rejected = sdm_cuti::where('approval', 0)->count();
 
-        return view('dashboard.index', compact('data', 'totalToday', 'approved', 'rejected', 'pending'));
+        return view('dashboard.index', compact( 'approved', 'rejected', 'pending'));
     }
 
     public function formcuti()
@@ -73,7 +59,7 @@ class DashboardController extends Controller
 
     public function onhold()
     {
-        $data = sdm_cuti::whereDate('tanggal_mulai', '>=', today())
+        $data = sdm_cuti::whereDate('tanggal_selesai', '>=', today())
                  ->where('approval', null)
                  ->get();
 
@@ -82,7 +68,7 @@ class DashboardController extends Controller
 
     public function approved()
     {
-        $data = sdm_cuti::whereDate('tanggal_mulai', '>=', today())
+        $data = sdm_cuti::whereDate('tanggal_selesai', '>=', today())
                  ->where('approval', 1)
                  ->get();
 
@@ -91,7 +77,7 @@ class DashboardController extends Controller
 
     public function rejected()
     {
-        $data = sdm_cuti::whereDate('tanggal_mulai', '>=', today())
+        $data = sdm_cuti::whereDate('tanggal_selesai', '>=', today())
                  ->where('approval', 0)
                  ->get();
 

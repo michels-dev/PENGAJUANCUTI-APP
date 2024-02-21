@@ -10,7 +10,7 @@ class AdminController extends Controller
 {
     public function admintable()
     {
-        $data = sdm_cuti::whereDate('tanggal_mulai', '>=', today())->get();
+        $data = sdm_cuti::whereDate('tanggal_selesai', '>=', today())->get();
         // dd($data);
         return view('admin.admin-table', compact('data'));
     }
