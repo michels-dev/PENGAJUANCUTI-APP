@@ -54,7 +54,7 @@
             <div class="small-box bg-warning">
                 <div class="inner">
                     <h3>{{ $pending }}</h3>
-                    <p>Cuti <span class="text-bold">On-Hold</span></p>
+                    <p>Cuti <span class="text-bold">Awaiting Approval</span></p>
                 </div>
             <a href="{{ route('dashboard.table-onhold') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>

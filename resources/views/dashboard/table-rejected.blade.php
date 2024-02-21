@@ -52,6 +52,7 @@
                       <th>NIK</th>
                       <th>Pengajuan</th>
                       <th>Tanggal Mulai</th>
+                      <th>Tanggal Selesai</th>
                       <th>Status</th>
                       <th>Tanggal Persetujuan</th>
                     </tr>
@@ -65,7 +66,8 @@
                         <td>{{ $no++ }}</td>
                         <td>{{ $row->nik }}</td>
                         <td>{{ $row->user_created }}</td>
-                        <td>{{ $row->tanggal_mulai }}</td>
+                        <td>{{ date('d/m/Y', strtotime($row->tanggal_mulai)) }}</td>
+                        <td>{{ date('d/m/Y', strtotime($row->tanggal_selesai)) }}</td>
                         <td>
                             <span>
                                 @if ($row->approval === 0)

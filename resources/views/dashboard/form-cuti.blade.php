@@ -53,7 +53,7 @@
                   </div>
                   <div class="col-6">
                     <label>Pengajuan <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="user_created" value="{{ Auth::user()->email }}" disabled>
+                    <input type="text" class="form-control" name="user_created" value="{{ Auth::user()->email }}" style="background-color: white" disabled>
                   </div>
                 </div>
                 <div class="row mt-3" style="font-size: 14px">
@@ -65,20 +65,29 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="col">
-                        <label>Jumlah Hari <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="hari">
+                    <div class="col-3">
+                      <label>Tanggal Cuti <span class="text-danger">*</span></label>
+                      <div class="input-group date" id="startdate" data-target-input="nearest">
+                          <input type="text" name="tanggal_mulai" class="form-control datetimepicker-input" data-target="#startdate"/>
+                          <div class="input-group-append" data-target="#startdate" data-toggle="datetimepicker">
+                              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <label>Selesai Cuti <span class="text-danger">*</span></label>
+                      <div class="input-group date" id="enddate" data-target-input="nearest">
+                          <input type="text" name="tanggal_selesai" class="form-control datetimepicker-input" data-target="#enddate"/>
+                          <div class="input-group-append" data-target="#enddate" data-toggle="datetimepicker">
+                              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                          </div>
+                      </div>
                     </div>
                 </div>
                 <div class="row mt-3" style="font-size: 14px">
                     <div class="col-6">
-                        <label>Tanggal Cuti <span class="text-danger">*</span></label>
-                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                            <input type="text" name="tanggal_mulai" class="form-control datetimepicker-input" data-target="#reservationdate"/>
-                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
-                        </div>
+                      <label>Jumlah Hari <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" name="hari" id="jumlahHari" style="background-color: white" readonly>
                     </div>
                     <div class="col-6">
                       <label>Keterangan <span class="text-danger">*</span></label>
@@ -126,12 +135,34 @@
 @endsection
 
 @push('after-scripts')
-  <script>
-        //Date picker
-        $('#reservationdate').datetimepicker({
-        format: 'L'
-    });
-  </script>
+<script>
+  //Date picker
+  $('#startdate').datetimepicker({
+    format: 'L',
+  });
+
+  $('#enddate').datetimepicker({
+    format: 'L',
+  });
+
+  $('#startdate').on('change.datetimepicker', function (e) {
+    calculateDays();
+  });
+
+  $('#enddate').on('change.datetimepicker', function (e) {
+    calculateDays();
+  });
+
+  function calculateDays() {
+    var start_date = moment($('#startdate').datetimepicker('viewDate'));
+    var end_date = moment($('#enddate').datetimepicker('viewDate'));
+
+    if (start_date.isValid() && end_date.isValid()) {
+      var diffDays = end_date.diff(start_date, 'days') + 1;
+      $('#jumlahHari').val(diffDays + ' Hari');
+    }
+  }
+</script>
 
     <script>
         // File input

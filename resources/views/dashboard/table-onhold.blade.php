@@ -15,7 +15,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h3>On-Hold</h3>
+            <h3>Awaiting Approval</h3>
           </div>
           <div class="col-sm-6"  style="font-size: 14px">
             <ol class="breadcrumb float-sm-right">
@@ -33,7 +33,7 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Table On-Hold</h3>
+          <h3 class="card-title">Table Awaiting Approval</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -51,7 +51,8 @@
                       <th>No.</th>
                       <th>NIK</th>
                       <th>Pengajuan</th>
-                      <th>Tanggal Mulai</th>
+                      <th>Tanggal Cuti</th>
+                      <th>Selesai Cuti</th>
                       <th>Status</th>
                       <th>Tanggal Persetujuan</th>
                     </tr>
@@ -64,12 +65,13 @@
                     <tr>
                         <td>{{ $no++ }}</td>
                         <td>{{ $row->nik }}</td>
-                        <td>{{ $row->user_created }}</td>
+                        <td>{{ date('d/m/Y', strtotime($row->tanggal_mulai)) }}</td>
+                        <td>{{ date('d/m/Y', strtotime($row->tanggal_selesai)) }}</td>
                         <td>{{ $row->tanggal_mulai }}</td>
                         <td>
                             <span>
                                 @if ($row->approval === null)
-                                    <span class="badge badge-warning">On-Hold</span>
+                                    <span class="badge badge-warning">Awaiting Approval</span>
                                 @endif
                             </span>
                         </td>

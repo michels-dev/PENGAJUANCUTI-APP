@@ -47,7 +47,8 @@
                       <th>No.</th>
                       <th>NIK</th>
                       <th>Pengajuan</th>
-                      <th>Tanggal Mulai</th>
+                      <th>Tanggal Cuti</th>
+                      <th>Selesai Cuti</th>
                       <th>Status</th>
                       <th>Tanggal Persetujuan</th>
                     </tr>
@@ -61,11 +62,12 @@
                         <td>{{ $no++ }}</td>
                         <td>{{ $row->nik }}</td>
                         <td>{{ $row->user_created }}</td>
-                        <td>{{ $row->tanggal_mulai }}</td>
+                        <td>{{ date('d/m/Y', strtotime($row->tanggal_mulai)) }}</td>
+                        <td>{{ date('d/m/Y', strtotime($row->tanggal_selesai)) }}</td>
                         <td>
                             <span>
                                 @if ($row->approval === null)
-                                    <span class="badge badge-warning">On-Hold</span>
+                                    <span class="badge badge-warning">Awaitaing Approval</span>
                                 @elseif ($row->approval === 1)
                                     <span class="badge badge-success">Approved</span>
                                 @elseif ($row->approval === 0)
