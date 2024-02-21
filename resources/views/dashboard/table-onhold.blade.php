@@ -53,8 +53,8 @@
                       <th>Pengajuan</th>
                       <th>Tanggal Cuti</th>
                       <th>Selesai Cuti</th>
+                      <th>Jumlah Hari</th>
                       <th>Status</th>
-                      <th>Tanggal Persetujuan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,9 +65,10 @@
                     <tr>
                         <td>{{ $no++ }}</td>
                         <td>{{ $row->nik }}</td>
+                        <td>{{ $row->user_created }}</td>
                         <td>{{ date('d/m/Y', strtotime($row->tanggal_mulai)) }}</td>
                         <td>{{ date('d/m/Y', strtotime($row->tanggal_selesai)) }}</td>
-                        <td>{{ $row->tanggal_mulai }}</td>
+                        <td>{{ $row->hari }}</td>
                         <td>
                             <span>
                                 @if ($row->approval === null)
@@ -75,7 +76,6 @@
                                 @endif
                             </span>
                         </td>
-                        <td>{{ $row->approval_date }}</td>
                     </tr>
                     @endforeach
                 </tbody>

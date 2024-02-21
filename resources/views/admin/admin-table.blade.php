@@ -122,45 +122,45 @@
           </div>
           @endforeach
 
-<!-- Cancel Modal -->
-@foreach ($data as $row)
-<div class="modal fade" id="cancelModal{{ $row->id }}" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title">Modal Cancel Cuti</h5>
-            </div>
-            <div class="modal-body">
-                <form action="{{ route('admin.cancel', ['id'=>$row->id]) }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="approval" value="{{ $row->approval }}">
-                    <input type="hidden" name="approval_date" value="{{ $row->approval_date }}">
-                    <div class="row">
-                      <div class="col-6">
-                        <label>Tanggal Cuti <span class="text-danger">*</span></label>
-                        <input type="date" name="tanggal_mulai" class="form-control" value="{{ date('Y-m-d', strtotime($row->tanggal_mulai)) }}"/>
+          <!-- Cancel Modal -->
+          @foreach ($data as $index => $row)
+          <div class="modal fade" id="cancelModal{{ $row->id }}" tabindex="-1" role="dialog">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title">Modal Cancel Cuti</h5>
                       </div>
-                      <div class="col-6">
-                        <label>Tanggal Selesai <span class="text-danger">*</span></label>
-                        <input type="date" name="tanggal_selesai" class="form-control" value="{{ date('Y-m-d', strtotime($row->tanggal_selesai)) }}"/>
+                      <div class="modal-body">
+                          <form action="{{ route('admin.cancel', ['id'=>$row->id]) }}" method="POST">
+                              @csrf
+                              <input type="hidden" name="approval" value="{{ $row->approval }}">
+                              <input type="hidden" name="approval_date" value="{{ $row->approval_date }}">
+                              <div class="row">
+                                  <div class="col-6">
+                                      <label>Tanggal Cuti <span class="text-danger">*</span></label>
+                                      <input type="date" name="tanggal_mulai" class="form-control" value="{{ date('Y-m-d', strtotime($row->tanggal_mulai)) }}"/>
+                                  </div>
+                                  <div class="col-6">
+                                      <label>Tanggal Selesai <span class="text-danger">*</span></label>
+                                      <input type="date" name="tanggal_selesai" class="form-control" value="{{ date('Y-m-d', strtotime($row->tanggal_selesai)) }}"/>
+                                  </div>
+                              </div>
+                              <div class="row mt-3">
+                                  <div class="col-12">
+                                      <label>Hari <span class="text-danger">*</span></label>
+                                      <input type="hari" name="hari" class="form-control" value="{{ $row->hari }}"/>
+                                  </div>
+                              </div>
                       </div>
-                    </div>
-                    <div class="row mt-3">
-                      <div class="col-12">
-                        <label>Hari <span class="text-danger">*</span></label>
-                        <input type="hari" name="hari" class="form-control" value="{{ $row->hari }}"/>
+                      <div class="modal-footer" style="text-align: center;">
+                          <button type="button" class="btn btn-outline-info mr-2" data-dismiss="modal">Kembali</button>
+                          <button type="submit" class="btn btn-warning mr-2 swalCancelWarning">Cancel</button>
                       </div>
-                    </div>
-            </div>
-            <div class="modal-footer" style="text-align: center;">
-              <button type="button" class="btn btn-outline-info mr-2" data-dismiss="modal">Kembali</button>
-              <button type="submit" class="btn btn-warning mr-2 swalCancelWarning">Cancel</button>
+                      </form>
+                  </div>
+              </div>
           </div>
-            </form>
-        </div>
-    </div>
-</div>
-@endforeach
+          @endforeach
 
           <footer class="main-footer">
             <div class="float-right d-none d-sm-block">
@@ -173,11 +173,15 @@
 @push('after-scripts')
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-      const startDateInput = document.querySelector('[name="tanggal_mulai"]');
-      const endDateInput = document.querySelector('[name="tanggal_selesai"]');
-      const daysInput = document.querySelector('[name="hari"]');
+      const startDateInputs = document.querySelectorAll('[name^="tanggal_mulai"]');
+      const endDateInputs = document.querySelectorAll('[name^="tanggal_selesai"]');
+      const daysInputs = document.querySelectorAll('[name^="hari"]');
 
-      function calculateDays() {
+      function calculateDays(index) {
+          const startDateInput = startDateInputs[index];
+          const endDateInput = endDateInputs[index];
+          const daysInput = daysInputs[index];
+
           const startDate = new Date(startDateInput.value);
           const endDate = new Date(endDateInput.value);
           const timeDiff = endDate - startDate;
@@ -185,11 +189,15 @@
           daysInput.value = diffDays ? diffDays + " Hari" : ''; // Pastikan ini mengupdate input yang benar
       }
 
-      startDateInput.addEventListener('change', calculateDays);
-      endDateInput.addEventListener('change', calculateDays);
+      startDateInputs.forEach((input, index) => {
+          input.addEventListener('change', () => calculateDays(index));
+          calculateDays(index);
+      });
 
-      // Panggil calculateDays sekali untuk menghitung hari berdasarkan nilai awal
-      calculateDays();
+      endDateInputs.forEach((input, index) => {
+          input.addEventListener('change', () => calculateDays(index));
+          calculateDays(index);
+      });
   });
 </script>
 
