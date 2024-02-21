@@ -70,7 +70,7 @@
                   <td>{{ date('d/m/Y', strtotime($row->tanggal_mulai)) }}</td>
                   <td>{{ date('d/m/Y', strtotime($row->tanggal_selesai)) }}</td>
                   <td><button type="button" class="btn  btn-outline-info" data-toggle="modal" data-target="#approvalModal{{ $row->id }}">APPROVAL</button></td>
-                  <td>{{ date('d/m/Y', strtotime($row->approval_date)) }}</td>
+                  <td>{{$row->approval_date}}</td>
                   <td>
                     <button type="button" class="btn btn-outline-primary"><i class="fas fa-eye"></i></button>
                     <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#cancelModal{{ $row->id }}"><i class="far fa-calendar-times"></i></button>
@@ -135,9 +135,10 @@
             </div>
             <div class="modal-body">
               <small class="text-danger">* Silahkan hapus form input tanggal cuti dan masukkan kembali tanggal cuti Anda.</small>
-              <input type="hidden" name="approval" value="{{ $row->approval }}">
                 <form action="{{ route('admin.cancel', ['id'=>$row->id]) }}" method="POST">
                     @csrf
+                    <input type="hidden" name="approval" value="{{ $row->approval }}">
+                    <input type="hidden" name="approval_date" value="{{ $row->approval_date }}">
                     <div class="mb-3">
                       <label>Tanggal Cuti <span class="text-danger">*</span></label>
                       <input type="date" name="tanggal_mulai" class="form-control" value="{{ date('Y-m-d', strtotime($row->tanggal_mulai)) }}"/>
