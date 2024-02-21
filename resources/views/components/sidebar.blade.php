@@ -11,14 +11,14 @@
       </div>
 
       <!-- Sidebar Menu -->
-      <nav class="mt-2">
+      <nav class="mt-2" style="font-size: 14px">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-calendar-week"></i>
-              <p style="font-size: 14px">
+              <p>
                 Setup Persetujuan Cuti
                 <i class="right fas fa-angle-left"></i>
               </p>
@@ -27,7 +27,7 @@
               <li class="nav-item">
                 <a href="{{ route('dashboard.table-onhold') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Data Cuti On-Hold</p>
+                  <p>Data Cuti Awaiting Approval</p>
                 </a>
               </li>
               <li class="nav-item">
