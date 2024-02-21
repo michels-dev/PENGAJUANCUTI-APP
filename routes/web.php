@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function(){
     Route::get('/admintable', [AdminController::class, 'admintable'])->name('admin-table');
     Route::get('/destroy/{id}', [AdminController::class, 'destroy'])->name('destroy');
-    Route::post('/update/{id}', [AdminController::class, 'update'])->name('update');
+    Route::post('/cancel/{id}', [AdminController::class, 'cancel'])->name('cancel');
 
         // Aprroved cuti
         Route::post('/approvalcuti/{id}', [AdminController::class, 'approvalcuti'])->name('approvalcuti');

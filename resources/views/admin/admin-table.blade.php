@@ -70,10 +70,10 @@
                   <td>{{ date('d/m/Y', strtotime($row->tanggal_mulai)) }}</td>
                   <td>{{ date('d/m/Y', strtotime($row->tanggal_selesai)) }}</td>
                   <td><button type="button" class="btn  btn-outline-info" data-toggle="modal" data-target="#approvalModal{{ $row->id }}">APPROVAL</button></td>
-                  <td>{{ $row->approval_date }}</td>
+                  <td>{{ date('d/m/Y', strtotime($row->approval_date)) }}</td>
                   <td>
                     <button type="button" class="btn btn-outline-primary"><i class="fas fa-eye"></i></button>
-                    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#updateModal{{ $row->id }}"><i class="fas fa-edit"></i></button>
+                    <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#cancelModal{{ $row->id }}"><i class="far fa-calendar-times"></i></button>
                     <a href="{{ route('admin.destroy', ['id' => $row->id]) }}" type="button" class="btn btn-outline-danger swalDeleteError"><i class="fas fa-trash"></i></a>
                   </td>
                 </tr>
@@ -125,36 +125,37 @@
           </div>
           @endforeach
 
-          <!-- Update Modal -->
-          @foreach ($data as $row)
-          <div class="modal fade" id="updateModal{{ $row->id }}" tabindex="-1" role="dialog">
-              <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Modal Update</h5>
-                      </div>
-                      <div class="modal-body">
-                          <form action="{{ route('admin.update', ['id'=>$row->id]) }}" method="POST">
-                              @csrf
-                              <div class="mb-3">
-                                <label>Tanggal Cuti <span class="text-danger">*</span></label>
-                                <div class="input-group date" id="updatedate" data-target-input="nearest">
-                                    <input type="text" name="tanggal_mulai" class="form-control datetimepicker-input" data-target="#updatedate"/>
-                                    <div class="input-group-append" data-target="#updatedate" data-toggle="datetimepicker">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                    </div>
-                                </div>
-                              </div>
-                      </div>
-                      <div class="modal-footer" style="text-align: center;">
-                        <button type="button" class="btn btn-outline-info mr-2" data-dismiss="modal">Kembali</button>
-                        <button type="submit" class="btn btn-success mr-2 swalUpdatetSuccess">Update</button>
+<!-- Cancel Modal -->
+@foreach ($data as $row)
+<div class="modal fade" id="cancelModal{{ $row->id }}" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Modal Cancel Cuti</h5>
+            </div>
+            <div class="modal-body">
+              <small class="text-danger">* Silahkan hapus form input tanggal cuti dan masukkan kembali tanggal cuti Anda.</small>
+              <input type="hidden" name="approval" value="{{ $row->approval }}">
+                <form action="{{ route('admin.cancel', ['id'=>$row->id]) }}" method="POST">
+                    @csrf
+                    <div class="mb-3">
+                      <label>Tanggal Cuti <span class="text-danger">*</span></label>
+                      <input type="date" name="tanggal_mulai" class="form-control" value="{{ date('Y-m-d', strtotime($row->tanggal_mulai)) }}"/>
                     </div>
-                      </form>
-                  </div>
-              </div>
+                    <div class="mb-3">
+                      <label>Tanggal Selesai <span class="text-danger">*</span></label>
+                      <input type="date" name="tanggal_selesai" class="form-control" value="{{ date('Y-m-d', strtotime($row->tanggal_selesai)) }}"/>
+                    </div>
+            </div>
+            <div class="modal-footer" style="text-align: center;">
+              <button type="button" class="btn btn-outline-info mr-2" data-dismiss="modal">Kembali</button>
+              <button type="submit" class="btn btn-warning mr-2 swalUpdatetSuccess">Cancel</button>
           </div>
-          @endforeach
+            </form>
+        </div>
+    </div>
+</div>
+@endforeach
 
           <footer class="main-footer">
             <div class="float-right d-none d-sm-block">
@@ -239,11 +240,4 @@
     format: 'L'
   });
   </script>
-    <script>
-      //Date picker
-      $('#updatedate').datetimepicker({
-      format: 'L'
-    });
-    </script>
-
 @endpush
