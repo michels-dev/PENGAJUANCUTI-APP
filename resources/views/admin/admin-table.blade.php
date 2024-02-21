@@ -71,11 +71,24 @@
                   <td>{{ date('d/m/Y', strtotime($row->tanggal_mulai)) }}</td>
                   <td>{{ date('d/m/Y', strtotime($row->tanggal_selesai)) }}</td>
                   <td>{{ $row->hari }}</td>
-                  <td><button type="button" class="btn  btn-outline-info" data-toggle="modal" data-target="#approvalModal{{ $row->id }}">APPROVAL</button></td>
+                  <td>
+                      <span>
+                                @if ($row->approval === null)
+                                    <span class="badge badge-warning">Awaitaing Approval</span>
+                                @elseif ($row->approval === 1)
+                                    <span class="badge badge-success">Approved</span>
+                                @elseif ($row->approval === 0)
+                                    <span class="badge badge-danger">Rejected</span>
+                                @else
+                                    <p>Status Persetujuan Tidak Valid</p>
+                                @endif
+                      </span>
+                  </td>
                   <td>{{$row->approval_date}}</td>
                   <td>
-                    <button type="button" class="btn btn-outline-primary"><i class="fas fa-eye"></i></button>
-                    <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#cancelModal{{ $row->id }}"><i class="far fa-calendar-times"></i></button>
+                    {{-- <button type="button" class="btn btn-outline-primary"><i class="fas fa-eye"></i></button> --}}
+                    <button type="button" class="btn  btn-outline-success" data-toggle="modal" data-target="#approvalModal{{ $row->id }}"><i class="fas fa-calendar-check"></i></button>
+                    <a href="{{ route('admin.cancel', ['id' => $row->id]) }}" class="btn btn-outline-warning"><i class="far fa-calendar-times"></i></a>
                     <a href="{{ route('admin.destroy', ['id' => $row->id]) }}" type="button" class="btn btn-outline-danger swalDeleteError"><i class="fas fa-trash"></i></a>
                   </td>
                 </tr>
@@ -109,7 +122,7 @@
                               {{-- <input type="hidden" name="approval" id="approval{{ $row->id }}" value=""> --}}
                               <div class="mb-3">
                                 <label>Tanggal Persetujuan <span class="text-danger">*</span></label>
-                                <input type="date" name="approval_date" class="form-control"/>
+                                <input type="date" name="approval_date" class="form-control" placeholder="{{ date('d/m/Y') }}" value="{{ date('Y-m-d') }}"/>
                               </div>
                       </div>
                       <div class="modal-footer" style="text-align: center;">
@@ -122,7 +135,7 @@
           </div>
           @endforeach
 
-          <!-- Cancel Modal -->
+          {{-- <!-- Cancel Modal -->
           @foreach ($data as $index => $row)
           <div class="modal fade" id="cancelModal{{ $row->id }}" tabindex="-1" role="dialog">
               <div class="modal-dialog" role="document">
@@ -160,7 +173,7 @@
                   </div>
               </div>
           </div>
-          @endforeach
+          @endforeach --}}
 
           <footer class="main-footer">
             <div class="float-right d-none d-sm-block">
