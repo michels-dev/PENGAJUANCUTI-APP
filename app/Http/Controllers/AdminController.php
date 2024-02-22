@@ -82,11 +82,11 @@ class AdminController extends Controller
             $message = 'Pengajuan Cuti Tidak Disetujui';
         } else {
             // Jika tindakan tidak valid, kembalikan response dengan error
-            return redirect()->route('admin.admin-table');
+            return redirect()->route('admin.data-cuti');
         }
 
         // Redirect kembali ke halaman sebelumnya atau halaman tertentu
-        return redirect()->route('admin.admin-table');
+        return redirect()->route('admin.data-cuti');
     }
 
     public function destroy($id)
@@ -95,7 +95,7 @@ class AdminController extends Controller
 
         $data->delete();
 
-        return redirect()->route('admin.admin-table');
+        return redirect()->route('admin.data-cuti');
     }
 
     public function cancel(Request $request, $id)
@@ -106,6 +106,6 @@ class AdminController extends Controller
             'approval_date' => null,
         ]);
 
-        return redirect()->route('admin.admin-table');
+        return redirect()->route('admin.data-cuti');
     }
 }
