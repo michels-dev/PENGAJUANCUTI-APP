@@ -8,7 +8,7 @@ use Illuminate\Support\Carbon;
 
 class AdminController extends Controller
 {
-    public function admintable()
+    public function datacuti()
     {
         // Mendapatkan tanggal saat ini
         $today = now();
@@ -27,7 +27,7 @@ class AdminController extends Controller
         // Mengambil data berdasarkan rentang tanggal
         $data = sdm_cuti::whereDate('tanggal_mulai', '>=', $start_date)->whereDate('tanggal_mulai', '<=', $end_date)->get();
 
-        return view('admin.admin-table', compact('data'));
+        return view('admin.data-cuti', compact('data'));
     }
 
 

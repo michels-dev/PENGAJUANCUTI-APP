@@ -23,7 +23,8 @@ use Illuminate\Support\Facades\Route;
 
 // Route Akses Admin
 Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function(){
-    Route::get('/admintable', [AdminController::class, 'admintable'])->name('admin-table');
+    Route::get('/datacuti', [AdminController::class, 'datacuti'])->name('data-cuti');
+    Route::get('/report', [AdminController::class, 'report'])->name('data-report');
     Route::get('/destroy/{id}', [AdminController::class, 'destroy'])->name('destroy');
     Route::get('/cancel/{id}', [AdminController::class, 'cancel'])->name('cancel');
 
