@@ -14,7 +14,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h3>Admin Tables</h3>
+            <h3>Report Tables</h3>
           </div>
           <div class="col-sm-6" style="font-size: 14px">
             <ol class="breadcrumb float-sm-right">
@@ -32,7 +32,7 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h1 class="card-title">Data Pengajuan Cuti</h1>
+          <h1 class="card-title">Data Report Cuti</h1>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -45,7 +45,7 @@
         </div>
         <!-- /.card-body -->
         <div class="card-body">
-            <table id="adminTable" class="table table-bordered table-striped" style="font-size: 15px; background-color: white">
+            <table id="repotTable" class="table table-bordered table-striped" style="font-size: 15px; background-color: white">
                 <thead>
                 <tr>
                   <th>No.</th>
@@ -102,7 +102,7 @@
 
   <script>
     $(document).ready(function() {
-        $('#adminTable').DataTable({
+        $('#repotTable').DataTable({
             "paging": true,
             "lengthChange": true,
             "searching": true,
