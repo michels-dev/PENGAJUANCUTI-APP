@@ -45,7 +45,7 @@
           </div>
         </div>
         <div class="card-body">
-            <table id="onholdTable" class="table table-bordered table-striped" style="font-size: 15px; background-color: white">
+            <table id="approvedTable" class="table table-bordered table-striped" style="font-size: 15px; background-color: white">
                 <thead>
                     <tr>
                       <th>No.</th>
@@ -103,17 +103,31 @@
 
 @push('after-scripts')
 <script>
-    $(function () {
-      $('#onholdTable').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": true,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-        "dom": '<"top"f>rt<"text-left"i><"top text-center"p>',
+  $(document).ready(function() {
+      $('#approvedTable').DataTable({
+          "paging": true,
+          "lengthChange": true,
+          "searching": true,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+          "responsive": true,
+          "dom": '<"top"<"float-left"l><"float-right"f>>rt<"bottom"ip><"clear">', // Menempatkan searching dan lengthChange sejajar
+          "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+          "destroy": true,
+          "language": {
+              "paginate": {
+                  "previous": "Sebelumnya",
+                  "next": "Selanjutnya"
+              },
+              "search": "",
+              "searchPlaceholder": "Cari...",
+              "lengthMenu": "Tampilkan Data _MENU_",
+              "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+              "infoEmpty": "Menampilkan 0 sampai 0 dari 0 data",
+              "infoFiltered": "(disaring dari total data _MAX_)"
+          }
       });
-    });
-  </script>
+  });
+</script>
 @endpush
