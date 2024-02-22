@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title', 'Admin Tables')
+@section('title', 'Data Cuti')
 @section('content')
     @include('components.navbar')
     @include('components.sidebar')

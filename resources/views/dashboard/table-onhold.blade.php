@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title', 'On-Hold')
+@section('title', 'Awaiting Approval')
 @section('content')
     @include('components.navbar')
     @include('components.sidebar')
