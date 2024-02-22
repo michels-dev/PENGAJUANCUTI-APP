@@ -30,6 +30,31 @@ class AdminController extends Controller
         return view('admin.data-cuti', compact('data'));
     }
 
+    public function report()
+    {
+        // Mendapatkan tanggal saat ini
+        $today = now();
+
+        // Menghitung tanggal 16 bulan ini
+        $start_date = $today->copy()->startOfMonth()->addDays(15);
+
+        // Menghitung tanggal 15 bulan depan
+        $end_date = $today->copy()->endOfMonth()->addDay()->addMonth()->subDays(15);
+
+        // Jika tanggal saat ini kurang dari tanggal 16, gunakan bulan sebelumnya sebagai awal
+        if ($today->day < 16) {
+            $start_date = $start_date->subMonth();
+            $end_date = $end_date->subMonth();
+        }
+
+        // Mengambil data cuti yang sesuai dengan rentang tanggal
+        $data = sdm_cuti::whereDate('tanggal_mulai', '<', $start_date)
+                        ->orWhereDate('tanggal_mulai', '>', $end_date)
+                        ->get();
+
+        return view('admin.data-report', compact('data'));
+    }
+
 
     public function updatecuti()
     {
