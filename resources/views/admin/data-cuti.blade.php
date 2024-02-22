@@ -122,7 +122,7 @@
                               {{-- <input type="hidden" name="approval" id="approval{{ $row->id }}" value=""> --}}
                               <div class="mb-3">
                                 <label>Tanggal Persetujuan <span class="text-danger">*</span></label>
-                                <input type="date" name="approval_date" class="form-control" placeholder="{{ date('d/m/Y') }}" value="{{ date('Y-m-d') }}" readonly/>
+                                <input type="date" name="approval_date" class="form-control" placeholder="{{ date('d/m/Y') }}" value="{{ date('Y-m-d') }}" style="background-color: white" readonly/>
                               </div>
                       </div>
                       <div class="modal-footer" style="text-align: center;">
