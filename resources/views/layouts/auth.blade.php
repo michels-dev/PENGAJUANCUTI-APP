@@ -9,6 +9,7 @@
     <title>@yield('title') -BPK PENABUR</title>
 
     @stack('before-styles')
+    <link rel="icon" href="{{ asset('image/icondark.png') }}" type="image/png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
     <link rel="stylesheet" href="{{ asset('adminlte3/plugins/fontawesome-free/css/all.min.css') }}">

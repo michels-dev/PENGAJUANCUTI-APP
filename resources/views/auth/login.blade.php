@@ -3,6 +3,11 @@
 @section('title', 'LogIn')
 @section('content')
 @push('after-styles')
+<style>
+  .outline:focus {
+    outline-color: none;
+  }
+</style>
 @endpush
 <div class="login-box">
     <div class="card card-outline">
@@ -22,8 +27,11 @@
             </div>
           </div>
           <div class="input-group mb-3">
-            <input type="password" class="form-control" name="password" placeholder="Password">
+            <input type="password" class="form-control" name="password" placeholder="Password" id="myInput">
             <div class="input-group-append">
+              <div class="input-group-text" style="font-size:12px; background-color:transparent" onclick="togglePasswordVisibility()">
+                <a href="#" id="eyeIcon" class="fas fa-eye-slash text-dark" tabindex="o"></a>
+              </div>
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
               </div>
@@ -45,3 +53,22 @@
   </div>
   <!-- /.login-box -->
 @endsection
+
+@push('after-scripts')
+<script>
+  function togglePasswordVisibility() {
+    var input = document.getElementById("myInput");
+    var eyeIcon = document.getElementById("eyeIcon");
+
+    if (input.type === "password") {
+      input.type = "text";
+      eyeIcon.classList.remove("fas", "fa-eye-slash");
+      eyeIcon.classList.add("fas", "fa-eye");
+    } else {
+      input.type = "password";
+      eyeIcon.classList.remove("fas", "fa-eye");
+      eyeIcon.classList.add("fas", "fa-eye-slash");
+    }
+  }
+</script>
+@endpush
