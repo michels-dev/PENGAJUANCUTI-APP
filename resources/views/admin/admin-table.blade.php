@@ -92,8 +92,8 @@
                     <a href="{{ route('admin.destroy', ['id' => $row->id]) }}" type="button" class="btn btn-outline-danger swalDeleteError"><i class="fas fa-trash"></i></a>
                   </td>
                 </tr>
-                </tbody>
                 @endforeach
+                </tbody>
             </table>
         </div>
         <!-- /.card-footer-->
@@ -122,7 +122,7 @@
                               {{-- <input type="hidden" name="approval" id="approval{{ $row->id }}" value=""> --}}
                               <div class="mb-3">
                                 <label>Tanggal Persetujuan <span class="text-danger">*</span></label>
-                                <input type="date" name="approval_date" class="form-control" placeholder="{{ date('d/m/Y') }}" value="{{ date('Y-m-d') }}"/>
+                                <input type="date" name="approval_date" class="form-control" placeholder="{{ date('d/m/Y') }}" value="{{ date('Y-m-d') }}" readonly/>
                               </div>
                       </div>
                       <div class="modal-footer" style="text-align: center;">
@@ -214,8 +214,7 @@
   });
 </script>
 
-
-<script>
+{{-- <script>
     $(function () {
       $('#adminTable').DataTable({
         "paging": true,
@@ -227,6 +226,36 @@
         "responsive": true,
         "dom": '<"top"f>rt<"text-left"i><"top text-center"p>',
       });
+    });
+  </script> --}}
+
+  {{-- Script DataTables --}}
+  <script>
+    $(document).ready(function() {
+        $('#adminTable').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+            "dom": '<"top"<"float-left"l><"float-right"f>>rt<"bottom"ip><"clear">', // Menempatkan searching dan lengthChange sejajar
+            "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+            "destroy": true,
+            "language": {
+                "paginate": {
+                    "previous": "Sebelumnya",
+                    "next": "Selanjutnya"
+                },
+                "search": "",
+                "searchPlaceholder": "Cari...",
+                "lengthMenu": "Tampilkan Data _MENU_",
+                "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+                "infoEmpty": "Menampilkan 0 sampai 0 dari 0 data",
+                "infoFiltered": "(disaring dari total data _MAX_)"
+            }
+        });
     });
   </script>
 
@@ -290,5 +319,13 @@
   });
   </script>
 
+{{-- <script>
+    $(document).ready(function() {
+        $('#adminTable').DataTable({
+            "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+            "destroy": true
+        });
+    });
+</script> --}}
 
 @endpush
