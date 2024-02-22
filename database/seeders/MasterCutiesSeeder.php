@@ -57,7 +57,7 @@ class MasterCutiesSeeder extends Seeder
             [
                 'kode' => 'DLL:KCL',
                 'keterangan' => 'Kecelakaan',
-                'potong_cuti' => '',
+                'potong_cuti' => 0,
             ],
             [
                 'kode' => 'DLL:LUPA',
