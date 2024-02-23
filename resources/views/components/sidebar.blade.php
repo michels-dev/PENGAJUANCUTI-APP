@@ -77,7 +77,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p style="font-size: 14px">
-                Setup Users
+                Menu Archive
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -85,7 +85,7 @@
               <li class="nav-item">
                 <a href="{{ route('users.users-table') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Users Tables</p>
+                  <p>Data Cuti Bagian</p>
                 </a>
               </li>
             </ul>
