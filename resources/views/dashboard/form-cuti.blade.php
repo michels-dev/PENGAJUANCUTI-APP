@@ -4,7 +4,12 @@
     @include('components.navbar')
     @include('components.sidebar')
     @push('after-styles')
-
+    <style>
+      .error-message {
+          color: red;
+          font-size: 12px;
+      }
+    </style>
     @endpush
 
 <!-- Content Wrapper. Contains page content -->
@@ -42,7 +47,7 @@
             </button>
           </div>
         </div>
-        <form action="{{ route('dashboard.store') }}" method="POST">
+        <form name="myForm" action="{{ route('dashboard.store') }}" method="POST" onsubmit="return validateForm()">
             @csrf
             <div class="card-body">
                 <input type="hidden" name="user_created" value="{{ Auth::user()->email }}">
@@ -50,10 +55,12 @@
                   <div class="col-6">
                     <label>NIK <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" name="nik">
+                    <span id="nik-error" class="error-message"></span>
                   </div>
                   <div class="col-6">
                     <label>Pengajuan <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" name="user_created" value="{{ Auth::user()->email }}" style="background-color: white" disabled>
+                    <span id="pengajuan-error" class="error-message"></span>
                   </div>
                 </div>
                 <div class="row mt-3" style="font-size: 14px">
@@ -64,6 +71,7 @@
                             <option value="{{ $cuti->kode }}">{{ $cuti->keterangan}}</option>
                             @endforeach
                         </select>
+                        <span id="tipe-error" class="error-message"></span>
                     </div>
                     <div class="col-3">
                       <label>Tanggal Cuti <span class="text-danger">*</span></label>
@@ -73,6 +81,7 @@
                               <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                           </div>
                       </div>
+                      <span id="tanggalMulai-error" class="error-message"></span>
                     </div>
                     <div class="col-3">
                       <label>Selesai Cuti <span class="text-danger">*</span></label>
@@ -82,22 +91,26 @@
                               <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                           </div>
                       </div>
+                      <span id="tanggalSelesai-error" class="error-message"></span>
                     </div>
                 </div>
                 <div class="row mt-3" style="font-size: 14px">
                     <div class="col-6">
                       <label>Jumlah Hari <span class="text-danger">*</span></label>
                       <input type="text" class="form-control" name="hari" id="jumlahHari" style="background-color: white" readonly>
+                      <span id="hari-error" class="error-message"></span>
                     </div>
                     <div class="col-6">
                       <label>Keterangan <span class="text-danger">*</span></label>
                       <textarea type="text" name="keperluan" class="form-control"></textarea>
+                      <span id="keperluan-error" class="error-message"></span>
                     </div>
                 </div>
                 <div class="row mt-3" style="font-size: 14px">
                     <div class="col-6">
                       <label>Pengganti <span class="text-danger">*</span></label>
                       <input type="text" name="pengganti" class="form-control">
+                      <span id="pengganti-error" class="error-message"></span>
                     </div>
                     <div class="col-6">
                         <label for="exampleInputFile">File input <span class="text-danger">*</span></label>
@@ -107,6 +120,7 @@
                             <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                           </div>
                         </div>
+                        <span id="buktiDokumen-error" class="error-message"></span>
                     </div>
                 </div>
             </div>
@@ -177,4 +191,70 @@
             theme: 'bootstrap4'
         })
     </script>
+
+    {{-- Form Validasi --}}
+    <script>
+      function validateForm() {
+          var nik = document.forms["myForm"]["nik"].value;
+          var tipe = document.forms["myForm"]["tipe"].value;
+          var tanggalMulai = document.forms["myForm"]["tanggal_mulai"].value;
+          var tanggalSelesai = document.forms["myForm"]["tanggal_selesai"].value;
+          var hari = document.forms["myForm"]["hari"].value;
+          var keperluan = document.forms["myForm"]["keperluan"].value;
+          var pengganti = document.forms["myForm"]["pengganti"].value;
+          var buktiDokumen = document.forms["myForm"]["bukti_dokumen"].value;
+
+          if (nik == "") {
+            document.getElementById('nik-error').innerHTML = 'NIK harus diisi';
+            return false;
+        } else {
+            document.getElementById('nik-error').innerHTML = '';
+        }
+
+        if (tipe == "") {
+            document.getElementById('tipe-error').innerHTML = 'Jenis Cuti harus diisi';
+            return false;
+        } else {
+            document.getElementById('tipe-error').innerHTML = '';
+        }
+
+        if (tanggalMulai == "") {
+            document.getElementById('tanggalMulai-error').innerHTML = 'Tanggal Mulai harus diisi';
+            return false;
+        } else {
+            document.getElementById('tanggalMulai-error').innerHTML = '';
+        }
+
+        if (tanggalSelesai == "") {
+            document.getElementById('tanggalSelesai-error').innerHTML = 'Tanggal Selesai harus diisi';
+            return false;
+        } else {
+            document.getElementById('tanggalSelesai-error').innerHTML = '';
+        }
+
+        if (keperluan == "") {
+            document.getElementById('keperluan-error').innerHTML = 'Keperluan harus diisi';
+            return false;
+        } else {
+            document.getElementById('keperluan-error').innerHTML = '';
+        }
+
+        if (pengganti == "") {
+            document.getElementById('pengganti-error').innerHTML = 'Pengganti harus diisi';
+            return false;
+        } else {
+            document.getElementById('pengganti-error').innerHTML = '';
+        }
+
+        if (buktiDokumen == "") {
+            document.getElementById('buktiDokumen-error').innerHTML = 'Bukti Dokumen harus diisi';
+            return false;
+        } else {
+            document.getElementById('buktiDokumen-error').innerHTML = '';
+        }
+
+
+        return true;
+      }
+  </script>
 @endpush
