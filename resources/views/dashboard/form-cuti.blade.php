@@ -204,57 +204,70 @@
           var pengganti = document.forms["myForm"]["pengganti"].value;
           var buktiDokumen = document.forms["myForm"]["bukti_dokumen"].value;
 
+          var isAnyFieldEmpty = false;
+
           if (nik == "") {
-            document.getElementById('nik-error').innerHTML = 'NIK harus diisi';
-            return false;
-        } else {
-            document.getElementById('nik-error').innerHTML = '';
-        }
+              document.getElementById('nik-error').innerHTML = 'NIK harus diisi';
+              isAnyFieldEmpty = true;
+          } else {
+              document.getElementById('nik-error').innerHTML = '';
+          }
 
-        if (tipe == "") {
-            document.getElementById('tipe-error').innerHTML = 'Jenis Cuti harus diisi';
-            return false;
-        } else {
-            document.getElementById('tipe-error').innerHTML = '';
-        }
+          if (tipe == "") {
+              document.getElementById('tipe-error').innerHTML = 'Jenis Cuti harus diisi';
+              isAnyFieldEmpty = true;
+          } else {
+              document.getElementById('tipe-error').innerHTML = '';
+          }
 
-        if (tanggalMulai == "") {
-            document.getElementById('tanggalMulai-error').innerHTML = 'Tanggal Mulai harus diisi';
-            return false;
-        } else {
-            document.getElementById('tanggalMulai-error').innerHTML = '';
-        }
+          if (tanggalMulai == "") {
+              document.getElementById('tanggalMulai-error').innerHTML = 'Tanggal Mulai harus diisi';
+              isAnyFieldEmpty = true;
+          } else {
+              document.getElementById('tanggalMulai-error').innerHTML = '';
+          }
 
-        if (tanggalSelesai == "") {
-            document.getElementById('tanggalSelesai-error').innerHTML = 'Tanggal Selesai harus diisi';
-            return false;
-        } else {
-            document.getElementById('tanggalSelesai-error').innerHTML = '';
-        }
+          if (tanggalSelesai == "") {
+              document.getElementById('tanggalSelesai-error').innerHTML = 'Tanggal Selesai harus diisi';
+              isAnyFieldEmpty = true;
+          } else {
+              document.getElementById('tanggalSelesai-error').innerHTML = '';
+          }
 
-        if (keperluan == "") {
-            document.getElementById('keperluan-error').innerHTML = 'Keperluan harus diisi';
-            return false;
-        } else {
-            document.getElementById('keperluan-error').innerHTML = '';
-        }
+          if (hari == "") {
+              document.getElementById('hari-error').innerHTML = 'Jumlah hari harus diisi dari Tanggal Mulai dan Tanggal Selesai';
+              isAnyFieldEmpty = true;
+          } else {
+              document.getElementById('hari-error').innerHTML = '';
+          }
 
-        if (pengganti == "") {
-            document.getElementById('pengganti-error').innerHTML = 'Pengganti harus diisi';
-            return false;
-        } else {
-            document.getElementById('pengganti-error').innerHTML = '';
-        }
+          if (keperluan == "") {
+              document.getElementById('keperluan-error').innerHTML = 'Keperluan harus diisi';
+              isAnyFieldEmpty = true;
+          } else {
+              document.getElementById('keperluan-error').innerHTML = '';
+          }
 
-        if (buktiDokumen == "") {
-            document.getElementById('buktiDokumen-error').innerHTML = 'Bukti Dokumen harus diisi';
-            return false;
-        } else {
-            document.getElementById('buktiDokumen-error').innerHTML = '';
-        }
+          if (pengganti == "") {
+              document.getElementById('pengganti-error').innerHTML = 'Pengganti harus diisi';
+              isAnyFieldEmpty = true;
+          } else {
+              document.getElementById('pengganti-error').innerHTML = '';
+          }
 
+          if (buktiDokumen == "") {
+              document.getElementById('buktiDokumen-error').innerHTML = 'Bukti Dokumen harus diisi';
+              isAnyFieldEmpty = true;
+          } else {
+              document.getElementById('buktiDokumen-error').innerHTML = '';
+          }
 
-        return true;
+          if (isAnyFieldEmpty) {
+              return false;
+          }
+
+          return true;
       }
-  </script>
+    </script>
+
 @endpush
