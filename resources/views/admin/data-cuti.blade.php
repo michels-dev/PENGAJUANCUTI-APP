@@ -88,7 +88,7 @@
                   <td>
                     {{-- <button type="button" class="btn btn-outline-primary"><i class="fas fa-eye"></i></button> --}}
                     <button type="button" class="btn  btn-outline-success" data-toggle="modal" data-target="#approvalModal{{ $row->id }}"><i class="fas fa-calendar-check"></i></button>
-                    <a href="{{ route('admin.cancel', ['id' => $row->id]) }}" class="btn btn-outline-warning"><i class="far fa-calendar-times"></i></a>
+                    <a href="{{ route('admin.cancel', ['id' => $row->id]) }}" class="btn btn-outline-warning swalCancelWarning"><i class="far fa-calendar-times"></i></a>
                     <a href="{{ route('admin.destroy', ['id' => $row->id]) }}" type="button" class="btn btn-outline-danger swalDeleteError"><i class="fas fa-trash"></i></a>
                   </td>
                 </tr>
