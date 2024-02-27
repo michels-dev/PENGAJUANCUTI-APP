@@ -92,7 +92,7 @@
 
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b>SIM</b> |Sistem Informasi Manajemen
+      <strong>Develop by <img src="{{ asset('image/logosim.png') }}" alt="" style="width: 18px"></strong>
     </div>
     <strong>&copy; 2024 BPK PENABUR Jakarta</strong>
   </footer>
