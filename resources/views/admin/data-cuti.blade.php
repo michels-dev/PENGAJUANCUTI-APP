@@ -299,20 +299,20 @@
       });
 
         // Delect
-        $('.swalDeleteError').click(function() {
-        Toast.fire({
-          icon: 'error',
-          title: 'Data persetujuan cuti tersebut telah dihapus.'
-        })
-      });
+      //   $('.swalDeleteError').click(function() {
+      //   Toast.fire({
+      //     icon: 'error',
+      //     title: 'Data persetujuan cuti tersebut telah dihapus.'
+      //   })
+      // });
 
         // Cancel
-        $('.swalCancelWarning').click(function() {
-        Toast.fire({
-          icon: 'warning',
-          title: 'Data persetujuan cuti telah dicancel.'
-        })
-      });
+      //   $('.swalCancelWarning').click(function() {
+      //   Toast.fire({
+      //     icon: 'warning',
+      //     title: 'Data persetujuan cuti telah dicancel.'
+      //   })
+      // });
     });
     </script>
 
