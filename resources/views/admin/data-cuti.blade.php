@@ -89,7 +89,11 @@
                     {{-- <button type="button" class="btn btn-outline-primary"><i class="fas fa-eye"></i></button> --}}
                     <button type="button" class="btn  btn-outline-success" data-toggle="modal" data-target="#approvalModal{{ $row->id }}"><i class="fas fa-calendar-check"></i></button>
                     <a href="{{ route('admin.cancel', ['id' => $row->id]) }}" class="btn btn-outline-warning swalCancelWarning"><i class="far fa-calendar-times"></i></a>
-                    <a href="{{ route('admin.destroy', ['id' => $row->id]) }}" type="button" class="btn btn-outline-danger swalDeleteError"><i class="fas fa-trash"></i></a>
+                    <a href="#"
+   onclick="showSweetAlert(event, {{ $row->id }}, '{{ $row->nik }}')"
+   class="btn btn-outline-danger">
+   <i class="fas fa-trash"></i>
+</a>
                   </td>
                 </tr>
                 @endforeach
@@ -327,5 +331,24 @@
         });
     });
 </script> --}}
+
+<script>
+  function showSweetAlert(event, id, nama) {
+      event.preventDefault();
+      Swal.fire({
+          title: "Hapus Data?",
+          text: "Apakah Anda yakin ingin menghapus data dengan NIK " + nama + "?",
+          icon: "error",
+          showCancelButton: true,
+          confirmButtonText: "Ya, Hapus",
+          cancelButtonText: "Batal"
+      }).then((result) => {
+          if (result.isConfirmed) {
+              window.location.href = "{{ url('admin/destroy') }}/" + id;
+              Swal.fire("Terhapus!", "Data berhasil dihapus.", "success");
+          }
+      });
+  }
+</script>
 
 @endpush
