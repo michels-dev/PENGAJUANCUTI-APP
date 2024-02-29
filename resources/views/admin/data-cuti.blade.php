@@ -88,12 +88,12 @@
                   <td>
                     {{-- <button type="button" class="btn btn-outline-primary"><i class="fas fa-eye"></i></button> --}}
                     <button type="button" class="btn  btn-outline-success" data-toggle="modal" data-target="#approvalModal{{ $row->id }}"><i class="fas fa-calendar-check"></i></button>
-                    <a href="{{ route('admin.cancel', ['id' => $row->id]) }}" class="btn btn-outline-warning swalCancelWarning"><i class="far fa-calendar-times"></i></a>
-                    <a href="#"
-   onclick="showSweetAlert(event, {{ $row->id }}, '{{ $row->nik }}')"
-   class="btn btn-outline-danger">
-   <i class="fas fa-trash"></i>
-</a>
+                    <a href="#" onclick="cancelSweetAlert(event, {{ $row->id }}, '{{ $row->nik }}')"
+                      class="btn btn-outline-warning"><i class="far fa-calendar-times"></i>
+                    </a>
+                    <a href="#" onclick="deleteSweetAlert(event, {{ $row->id }}, '{{ $row->nik }}')"
+                      class="btn btn-outline-danger"><i class="fas fa-trash"></i>
+                    </a>
                   </td>
                 </tr>
                 @endforeach
@@ -332,8 +332,30 @@
     });
 </script> --}}
 
+{{-- script sweet alert cancel cuti --}}
 <script>
-  function showSweetAlert(event, id, nama) {
+  function cancelSweetAlert(event, id, nama) {
+      event.preventDefault();
+      Swal.fire({
+          title: "Cancel Cuti?",
+          text: "Apakah Anda yakin ingin cancel cuti dengan NIK " + nama + "?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Ya, Cancel",
+          confirmButtonColor: '#FFA500',
+          cancelButtonText: "Batal",
+      }).then((result) => {
+          if (result.isConfirmed) {
+              window.location.href = "{{ url('admin/cancel') }}/" + id;
+              Swal.fire("Cancel!", "Cuti berhasil dicancel.", "success");
+          }
+      });
+  }
+</script>
+
+{{-- script sweet alert delete --}}
+<script>
+  function deleteSweetAlert(event, id, nama) {
       event.preventDefault();
       Swal.fire({
           title: "Hapus Data?",
@@ -341,7 +363,8 @@
           icon: "error",
           showCancelButton: true,
           confirmButtonText: "Ya, Hapus",
-          cancelButtonText: "Batal"
+          confirmButtonColor: '#FF0000',
+          cancelButtonText: "Batal",
       }).then((result) => {
           if (result.isConfirmed) {
               window.location.href = "{{ url('admin/destroy') }}/" + id;
