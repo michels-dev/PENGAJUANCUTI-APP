@@ -150,7 +150,7 @@
 
 @push('after-scripts')
 <script>
-  //Date picker
+  // Date picker
   $('#startdate').datetimepicker({
     format: 'L',
   });
@@ -172,11 +172,23 @@
     var end_date = moment($('#enddate').datetimepicker('viewDate'));
 
     if (start_date.isValid() && end_date.isValid()) {
-      var diffDays = end_date.diff(start_date, 'days') + 1;
-      $('#jumlahHari').val(diffDays + ' Hari');
+      var totalDays = 0;
+      var current_date = start_date;
+
+      // Loop through each day between start and end dates
+      while (current_date <= end_date) {
+        // Check if current day is not Saturday (6) or Sunday (0)
+        if (current_date.day() !== 6 && current_date.day() !== 0) {
+          totalDays++;
+        }
+        current_date.add(1, 'days'); // Move to the next day
+      }
+
+      $('#jumlahHari').val(totalDays + ' Hari');
     }
   }
 </script>
+
 
     <script>
         // File input
