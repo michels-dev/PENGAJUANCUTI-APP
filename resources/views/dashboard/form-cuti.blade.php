@@ -175,9 +175,9 @@
       var totalDays = 0;
       var current_date = start_date;
 
-      // Loop through each day between start and end dates
+      // Ulangi setiap hari antara tanggal mulai dan akhir
       while (current_date <= end_date) {
-        // Check if current day is not Saturday (6) or Sunday (0)
+        // Periksa apakah hari ini bukan hari Sabtu (6) atau Minggu (0)
         if (current_date.day() !== 6 && current_date.day() !== 0) {
           totalDays++;
         }
