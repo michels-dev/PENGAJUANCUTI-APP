@@ -17,5 +17,6 @@ class sdm_cuti extends Model
     public function user()
     {
         return $this->belongsTo(users::class, 'user_created', 'email');
+        return $this->belongsTo(users::class, 'nik', 'nik');
     }
 }

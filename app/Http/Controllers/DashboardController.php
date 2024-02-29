@@ -11,10 +11,21 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        // visualisasi data
+        $user = Auth::user();
+
+        if($user->isAdmin()){
+                    // visualisasi data
         $pending = sdm_cuti::where('approval', null)->count();
         $approved = sdm_cuti::where('approval', 1)->count();
         $rejected = sdm_cuti::where('approval', 0)->count();
+        }
+        else {
+
+            $pending = sdm_cuti::where('user_created', Auth::user()->email)->where('approval', null)->count();
+            $approved = sdm_cuti::where('user_created', Auth::user()->email)->where('approval', 1)->count();
+            $rejected = sdm_cuti::where('user_created', Auth::user()->email)->where('approval', 0)->count();
+
+        }
 
         return view('dashboard.index', compact( 'approved', 'rejected', 'pending'));
     }

@@ -54,7 +54,7 @@
                 <div class="row" style="font-size: 14px">
                   <div class="col-6">
                     <label>NIK <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="nik">
+                    <input type="text" class="form-control" name="nik" value="{{ Auth::user()->nik }}" style="background-color: white" readonly>
                     <span id="nik-error" class="error-message"></span>
                   </div>
                   <div class="col-6">
