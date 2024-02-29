@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('pengganti', 255);
             $table->text('query_update')->nullable();
             $table->text('query_delete')->nullable();
-            $table->text('bukti_dokumen');
+            $table->text('bukti_dokumen')->nullable();;
             $table->integer('flag_pump')->nullable();
             $table->timestamps();
         });

@@ -46,7 +46,7 @@ class DashboardController extends Controller
             'tanggal_selesai' =>'required|date_format:m/d/Y',
             'keperluan' =>'required',
             'pengganti' =>'required',
-            'bukti_dokumen' =>'required',
+            'bukti_dokumen' =>'nullable',
             'user_created' =>'required',
         ]);
 

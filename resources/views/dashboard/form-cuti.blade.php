@@ -113,14 +113,14 @@
                       <span id="pengganti-error" class="error-message"></span>
                     </div>
                     <div class="col-6">
-                        <label for="exampleInputFile">File input <span class="text-danger">*</span></label>
+                        <label for="exampleInputFile">File input</label>
                         <div class="input-group">
                           <div class="custom-file">
                             <input type="file" name="bukti_dokumen" class="custom-file-input" id="exampleInputFile">
                             <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                           </div>
                         </div>
-                        <span id="buktiDokumen-error" class="error-message"></span>
+                        <span class="text-danger" style="font-size: 10px">Silahkan upload file jika ada</span>
                     </div>
                 </div>
             </div>
@@ -253,13 +253,6 @@
               isAnyFieldEmpty = true;
           } else {
               document.getElementById('pengganti-error').innerHTML = '';
-          }
-
-          if (buktiDokumen == "") {
-              document.getElementById('buktiDokumen-error').innerHTML = 'Bukti Dokumen harus diisi';
-              isAnyFieldEmpty = true;
-          } else {
-              document.getElementById('buktiDokumen-error').innerHTML = '';
           }
 
           if (isAnyFieldEmpty) {
