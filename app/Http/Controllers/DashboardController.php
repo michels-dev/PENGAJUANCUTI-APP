@@ -141,32 +141,32 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
-                // Mendapatkan tanggal saat ini
-                $today = now();
+        $currentDate = Carbon::now();
 
-                // Menghitung tanggal 16 dari bulan ini
-                $start_date = $today->copy()->startOfMonth()->addDays(15);
+        $date = Carbon::now()->subMonth();
 
-                // Menghitung tanggal 15 dari bulan depan
-                $end_date = $today->copy()->endOfMonth()->addDay()->addMonth()->subDays(15);
+        if ($currentDate->day > 15) {
+            $date=Carbon::now();
+        }
 
-                // Jika tanggal hari ini lebih besar dari tanggal 15, gunakan bulan berikutnya sebagai akhir
-                if ($today->day > 15) {
-                    $end_date = $end_date->addMonth();
-                }
+        $startDate = $date->copy()->startOfMonth()->addDays(14);
+        $endDate = $date->copy()->endOfMonth()->addDays(16);
+        // dd($data);
 
         // Jika admin login
         if ($user->isAdmin()){
-            $data = sdm_cuti::whereDate('tanggal_mulai', '>=', $start_date)
+            $data = sdm_cuti::where('tanggal_mulai', '>=', $startDate)
             ->where('approval', 0)
-            ->whereDate('tanggal_mulai', '<=', $end_date)->get();
+            ->where('tanggal_mulai', '<=', $endDate)
+            ->get();
         }
         // Jika users login
         else {
             $data = sdm_cuti::where('user_created', Auth::user()->email)
             ->where('approval', 0)
-            ->whereDate('tanggal_mulai', '>=', $start_date)
-            ->whereDate('tanggal_mulai', '<=', $end_date)->get();
+            ->where('tanggal_mulai', '>=', $startDate)
+            ->where('tanggal_mulai', '<=', $endDate)
+            ->get();
         }
         return view('dashboard.table-rejected', compact('data'));
     }
