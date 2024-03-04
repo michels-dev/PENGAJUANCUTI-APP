@@ -10,22 +10,21 @@ class AdminController extends Controller
 {
     public function datacuti()
     {
-        // Mendapatkan tanggal saat ini
-        $today = now();
+        $currentDate = Carbon::now();
 
-        // Menghitung tanggal 16 dari bulan ini
-        $start_date = $today->copy()->startOfMonth()->addDays(15);
-
-        // Menghitung tanggal 15 dari bulan depan
-        $end_date = $today->copy()->endOfMonth()->addDay()->addMonth()->subDays(15);
-
-        // Jika tanggal hari ini lebih besar dari tanggal 15, gunakan bulan berikutnya sebagai akhir
-        if ($today->day > 15) {
-            $end_date = $end_date->addMonth();
+        $date = Carbon::now()->subMonth();
+        
+        if ($currentDate->day > 15) {
+            $date=Carbon::now();
         }
 
-        // Mengambil data berdasarkan rentang tanggal
-        $data = sdm_cuti::whereDate('tanggal_mulai', '>=', $start_date)->whereDate('tanggal_mulai', '<=', $end_date)->get();
+        $startDate = $date->copy()->startOfMonth()->addDays(14);
+        $endDate = $date->copy()->endOfMonth()->addDays(16);
+
+        $data = sdm_cuti::where('tanggal_mulai', '>=', $startDate)
+        ->where('tanggal_mulai', '<=', $endDate)
+        ->get();
+        // dd($data);
 
         return view('admin.data-cuti', compact('data'));
     }

@@ -66,7 +66,7 @@
                 @foreach ($data as $row)
                 <tr>
                   <td>{{ $no++ }}</td>
-                  <td>{{ $row->nik }}</td>
+                  <td>{{ $row->nik}}</td>
                   <td>{{ $row->user_created }}</td>
                   <td>{{ date('d/m/Y', strtotime($row->tanggal_mulai)) }}</td>
                   <td>{{ date('d/m/Y', strtotime($row->tanggal_selesai)) }}</td>
