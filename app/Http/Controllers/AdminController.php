@@ -13,7 +13,7 @@ class AdminController extends Controller
         $currentDate = Carbon::now();
 
         $date = Carbon::now()->subMonth();
-        
+
         if ($currentDate->day > 15) {
             $date=Carbon::now();
         }
@@ -31,25 +31,18 @@ class AdminController extends Controller
 
     public function report()
     {
-        // Mendapatkan tanggal saat ini
-        $today = now();
 
-        // Menghitung tanggal 16 bulan ini
-        $start_date = $today->copy()->startOfMonth()->addDays(15);
+        $currentDate = Carbon::now();
 
-        // Menghitung tanggal 15 bulan depan
-        $end_date = $today->copy()->endOfMonth()->addDay()->addMonth()->subDays(15);
+        $endDate = Carbon::now()->subMonth()->startOfMonth()->addDays(14);
 
-        // Jika tanggal saat ini kurang dari tanggal 16, gunakan bulan sebelumnya sebagai awal
-        if ($today->day < 16) {
-            $start_date = $start_date->subMonth();
-            $end_date = $end_date->subMonth();
+        if ($currentDate->day > 15) {
+                 $endDate=Carbon::now()->startOfMonth()->addDays(14);
         }
 
-        // Mengambil data cuti yang sesuai dengan rentang tanggal
-        $data = sdm_cuti::whereDate('tanggal_mulai', '<', $start_date)
-                        ->orWhereDate('tanggal_mulai', '>', $end_date)
-                        ->get();
+        $data = sdm_cuti::where('tanggal_mulai', '<=', $endDate)
+                ->get();
+        // dd($endDate);
 
         return view('admin.data-report', compact('data'));
     }

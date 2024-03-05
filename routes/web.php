@@ -56,5 +56,5 @@ Route::name('auth.')->prefix('auth')->group(function(){
 
 // Hak Akses for Admin
 Route::middleware(['auth', 'hakakses:admin'])->name('admin.')->prefix('admin')->group(function(){
-    Route::get('/admintable', [AdminController::class, 'admintable'])->name('admin-table');
+    Route::get('/datacuti', [AdminController::class, 'datacuti'])->name('data-cuti');
 });
