@@ -66,7 +66,7 @@
                 <div class="row mt-3" style="font-size: 14px">
                     <div class="col-6">
                         <label>Jenis Cuti <span class="text-danger">*</span></label>
-                        <select name="tipe" class="cuties" multiple="multiple" style="width: 100%;" data-placeholder="Select Cuti">
+                        <select name="tipe" class="cuties" style="width: 100%;" data-placeholder="Select Cuti">
                             @foreach($masterCuti as $cuti)
                             <option value="{{ $cuti->kode }}">{{ $cuti->keterangan}}</option>
                             @endforeach
