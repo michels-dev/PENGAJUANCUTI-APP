@@ -67,6 +67,7 @@
                     <div class="col-6">
                         <label>Jenis Cuti <span class="text-danger">*</span></label>
                         <select name="tipe" class="cuties" style="width: 100%;" data-placeholder="Select Cuti">
+                          <option>Select Cuti</option>
                             @foreach($masterCuti as $cuti)
                             <option value="{{ $cuti->kode }}">{{ $cuti->keterangan}}</option>
                             @endforeach
