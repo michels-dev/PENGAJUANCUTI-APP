@@ -31,6 +31,57 @@
     <section class="content">
 
       <!-- Default box -->
+      @if (Auth::user()->isAdmin())
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Data Awaiting Approval</h3>
+
+          <div class="card-tools">
+            <a href="{{ route('admin.data-cuti') }}" type="button" class="btn btn-tool">
+              <span style="font-size: 20px"><i class="fas fa-arrow-left"></i> Approval Data</span>
+            </a>
+          </div>
+        </div>
+        <div class="card-body">
+            <table id="onholdTable" class="table table-bordered table-striped" style="font-size: 15px; background-color: white">
+                <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>NIK</th>
+                      <th>Pengajuan</th>
+                      <th>Tanggal Cuti</th>
+                      <th>Selesai Cuti</th>
+                      <th>Jumlah Hari</th>
+                      <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php
+                        $no = 1;
+                    @endphp
+                    @foreach ($data as $index => $row )
+                    <tr>
+                        <td>{{ $no++ }}</td>
+                        <td>{{ $row->nik }}</td>
+                        <td>{{ $row->user_created }}</td>
+                        <td>{{ date('d/m/Y', strtotime($row->tanggal_mulai)) }}</td>
+                        <td>{{ date('d/m/Y', strtotime($row->tanggal_selesai)) }}</td>
+                        <td>{{ $row->hari }}</td>
+                        <td>
+                            <span>
+                                @if ($row->approval === null)
+                                    <span class="badge badge-warning">Awaiting Approval</span>
+                                @endif
+                            </span>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      @else
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">Data Awaiting Approval</h3>
@@ -83,6 +134,7 @@
         </div>
         <!-- /.card-body -->
       </div>
+      @endif
       <!-- /.card -->
 
     </section>
